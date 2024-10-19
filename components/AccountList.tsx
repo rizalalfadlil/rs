@@ -3,7 +3,6 @@ import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardContent,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -15,7 +14,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Plus, X } from "lucide-react";
+import { Plus } from "lucide-react";
 import React, { useState } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
@@ -30,10 +29,7 @@ import {
   Sheet,
   SheetContent,
   SheetFooter,
-  SheetHeader,
-  SheetTitle,
 } from "./ui/sheet";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 
 export function AccountList() {
   const [userExample, setUserExample] = useState([
