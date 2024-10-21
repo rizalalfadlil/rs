@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { SaveNewsToFirebase } from "@/backend/controler/news"; // Impor fungsi Firebase
-import { Card, CardContent, CardHeader } from "./ui/card";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
+import { X } from "lucide-react";
 
 const WriteNewsPage = ({
   data,
@@ -19,6 +19,7 @@ const WriteNewsPage = ({
   const [imageFile, setImageFile] = useState(null);
   const [penulis, setpenulis] = useState("");
   const [teks, setteks] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
 
   useEffect(() => {
     clearForm();
@@ -59,8 +60,13 @@ const WriteNewsPage = ({
   const handleImageChange = (e) => {
     if (e.target.files && e.target.files[0]) {
       setImageFile(e.target.files[0]);
+      setImageUrl(URL.createObjectURL(e.target.files[0]));
     }
   };
+  // const removeImage = () => {
+  //   setImageFile(null);
+  //   setImageUrl("");
+  // };
 
   return (
     <div>
@@ -88,6 +94,13 @@ const WriteNewsPage = ({
               accept="image/*"
               required={!id} // Gambar wajib untuk create, tidak wajib untuk update
             />
+            {imageUrl && (
+              <div
+                className="w-full h-60 bg-center bg-cover bg-no-repeat mt-4 rounded-md relative"
+                style={{ backgroundImage: `url("${imageUrl}")` }}
+              >
+              </div>
+            )}
           </div>
 
           <div className="mb-4">
