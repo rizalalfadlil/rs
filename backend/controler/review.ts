@@ -24,7 +24,7 @@ export async function GetAllReview() {
     console.error("Error getting documents: ", error);
   }
 }
-export async function CreateReview(data: any) {
+export async function CreateReview(data: { nama: string; jabatan: string; ulasan: string; rating: number; }) {
   try {
     const docRef = await addDoc(collection(db, "review"), data);
     console.log("Document written with ID: ", docRef.id);
@@ -40,7 +40,7 @@ export async function DeleteReview(id:string) {
     console.error(e);
   }
 }
-export async function SetReview(data, id) {
+export async function SetReview(data: { nama: string; jabatan: string; ulasan: string; rating: number; }, id: string) {
   try{
     await setDoc(doc(db,"review", id), data)
     console.log("Document updated with ID: ", id);

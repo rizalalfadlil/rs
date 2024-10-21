@@ -3,7 +3,7 @@ import React from "react";
 export function Sidebar({ page, setPage }: any) {
   const menuList = [
     {
-      target: "news",
+      target: "berita",
       icon: <Newspaper />,
       text: "berita",
     },

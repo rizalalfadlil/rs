@@ -33,43 +33,7 @@ import {
 } from "./ui/alert-dialog";
 
 export function ReviewPage({}) {
-  const [reviews, setReviews] = useState([
-    {
-      nama: "Andi Setiawan",
-      jabatan: "CEO PT Sukses Makmur",
-      ulasan:
-        "Sebagai CEO, saya selalu mencari alat yang bisa membantu tim pemasaran kami bekerja lebih efisien. Aplikasi ini benar-benar mengubah cara kami mengelola kampanye. Fitur otomatisasinya sangat membantu dalam menghemat waktu dan sumber daya. Selain itu, laporan analitik yang disediakan sangat mendalam, memungkinkan kami untuk mengambil keputusan berdasarkan data yang akurat. Saya sangat merekomendasikan aplikasi ini bagi perusahaan yang ingin meningkatkan efektivitas pemasaran mereka.",
-      rating: 4.5,
-    },
-    {
-      nama: "Rina Kartika",
-      jabatan: "CFO Bina Sejahtera",
-      ulasan:
-        "Sebagai CFO, efisiensi dan ketepatan laporan keuangan adalah prioritas utama saya. Aplikasi ini menyediakan banyak fitur yang memudahkan saya dan tim dalam mengelola anggaran, laporan keuangan, dan proyeksi. Namun, ada beberapa fitur yang dapat ditingkatkan, terutama dalam hal kecepatan pemrosesan data untuk perusahaan dengan volume transaksi yang besar. Secara keseluruhan, ini adalah solusi yang sangat bermanfaat bagi departemen keuangan kami.",
-      rating: 4.0,
-    },
-    {
-      nama: "Budi Wirawan",
-      jabatan: "CTO Tech Innovators",
-      ulasan:
-        "Dalam peran saya sebagai CTO, integrasi API yang lancar dan dokumentasi yang jelas sangatlah penting. Aplikasi ini memenuhi harapan saya dalam hal itu. Proses integrasi ke sistem internal kami berjalan sangat baik tanpa hambatan yang berarti. Dokumentasi yang disediakan pun sangat jelas, memudahkan pengembang kami untuk cepat beradaptasi. Meskipun demikian, saya menemukan beberapa bug kecil yang memerlukan perbaikan, tetapi secara keseluruhan, ini adalah alat yang sangat membantu untuk proyek-proyek teknis kami.",
-      rating: 4.2,
-    },
-    {
-      nama: "Siti Aisyah",
-      jabatan: "Founder Kreativa Digital",
-      ulasan:
-        "Sebagai founder dari startup yang bergerak di bidang kreatif, saya membutuhkan aplikasi yang dapat mempermudah pengelolaan tim dan proyek. Saya senang menemukan aplikasi ini karena memiliki banyak fitur yang sangat relevan bagi kami. Dari manajemen tugas hingga kolaborasi antar departemen, semuanya menjadi lebih teratur dan efisien. Saya juga menyukai fitur pelacakan waktu yang membantu kami memantau produktivitas tim secara real-time. Ini adalah investasi yang sangat berharga untuk startup seperti kami.",
-      rating: 4.8,
-    },
-    {
-      nama: "Joko Susilo",
-      jabatan: "COO Global Ventures",
-      ulasan:
-        "Sebagai COO, saya harus memastikan bahwa operasi bisnis berjalan dengan lancar. Aplikasi ini memberikan solusi manajemen yang komprehensif untuk kebutuhan operasional kami. Saya sangat terkesan dengan kemudahan penggunaannya dan kemampuan skalabilitasnya. Kami dapat dengan mudah menyesuaikan fitur-fitur yang tersedia sesuai dengan pertumbuhan bisnis kami. Namun, saya berharap ada lebih banyak fitur yang mendukung otomatisasi tugas rutin agar tim bisa lebih fokus pada hal-hal yang strategis.",
-      rating: 4.7,
-    },
-  ]);
+  const [reviews, setReviews] = useState([]);
 
   const [nama, setNama] = useState("");
   const [jabatan, setjabatan] = useState("");
@@ -94,7 +58,7 @@ export function ReviewPage({}) {
     setRating(0);
     setId("")
   }
-  async function selectReview(data) {
+  async function selectReview(data: { nama: any; jabatan: any; ulasan: any; rating: any; id?: any; }) {
     setNama(data.nama);
     setjabatan(data.jabatan);
     setUlasan(data.ulasan);
@@ -120,7 +84,7 @@ export function ReviewPage({}) {
         <CardTitle>Testimoni</CardTitle>
       </CardHeader>
       <CardContent className="grid md:grid-cols-2 gap-2">
-        {reviews.map((r, i) => (
+        {reviews.map((r:{nama:string,jabatan:string,ulasan:string,rating:string|number,id:string}, i) => (
           <Sheet key={i}>
             <SheetTrigger asChild>
               <div
