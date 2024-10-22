@@ -9,7 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Plus } from "lucide-react";
+import { Plus, Search } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
@@ -33,7 +33,9 @@ import {
   register,
   updateAccount,
 } from "@/backend/controler/account";
-
+import dayjs from "dayjs";
+import "dayjs/locale/id";
+dayjs.locale("id");
 interface User {
   fullName: string;
   email: string;
@@ -63,6 +65,7 @@ export function AccountList() {
   }, []);
   const getUsers = async () => {
     setUserExample(await getUsersList());
+    setFilteredData(await getUsersList());
   };
   const [nama, setNama] = useState("");
   const [email, setEmail] = useState("");
@@ -92,6 +95,28 @@ export function AccountList() {
     getUsers();
     clearForm();
   };
+
+  const [searchTerm, setSearchTerm] = useState(""); // State untuk term pencarian
+  const [filteredData, setFilteredData] = useState(userExample);
+
+  const handleSearch = (value: string) => {
+    setSearchTerm(value); // Mengupdate term pencarian
+    setFilteredData(filterData(userExample, value)); // Mengupdate hasil pencarian
+  };
+
+  // Fungsi filter untuk mencari berdasarkan semua key
+  const filterData = (data: any[], searchTerm: string) => {
+    if (!searchTerm) {
+      return data;
+    }
+
+    return data.filter((item) =>
+      Object.values(item).some((value: any) =>
+        value.toString().toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    );
+  };
+
   return (
     <div className="flex gap-4">
       <Card className="grow">
@@ -99,6 +124,17 @@ export function AccountList() {
           <CardTitle>Account</CardTitle>
         </CardHeader>
         <CardContent>
+          <div className="rounded-md border flex items-center">
+            <div className="p-2 px-4 text-muted-foreground">
+              <Search />
+            </div>
+            <Input
+              placeholder="cari"
+              value={searchTerm}
+              onChange={(e) => handleSearch(e.target.value)}
+              className="border-0 grow"
+            />
+          </div>
           <Sheet onOpenChange={clearForm}>
             <SheetTrigger asChild>
               <Button
@@ -130,7 +166,13 @@ export function AccountList() {
                   type="email"
                   onChange={(e) => setEmail(e.target.value)}
                 />
-                <p className={`text-xs ${!isValidEmail(email) && 'text-red-500'}`}>({isValidEmail(email)?"valid email":"invalid email"})</p>
+                <p
+                  className={`text-xs ${
+                    !isValidEmail(email) && "text-red-500"
+                  }`}
+                >
+                  ({isValidEmail(email) ? "valid email" : "invalid email"})
+                </p>
               </div>
               <div>
                 <label>password</label>
@@ -145,7 +187,11 @@ export function AccountList() {
                     password.length < 8 && "text-red-500"
                   }`}
                 >
-                  ({password.length < 8 ? `8 / ${password.length}` : `${password.length} / 20`})
+                  (
+                  {password.length < 8
+                    ? `8 / ${password.length}`
+                    : `${password.length} / 20`}
+                  )
                 </p>
               </div>
 
@@ -161,7 +207,13 @@ export function AccountList() {
                   </SelectContent>
                 </Select>
               </div>
-              <Button className="w-full" onClick={RegisterAccount} disabled={nama.length < 1 || !isValidEmail(email) || password.length < 8}>
+              <Button
+                className="w-full"
+                onClick={RegisterAccount}
+                disabled={
+                  nama.length < 1 || !isValidEmail(email) || password.length < 8
+                }
+              >
                 Register
               </Button>
             </SheetContent>
@@ -175,7 +227,7 @@ export function AccountList() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {userExample.map((u: User, i: number) => (
+              {filteredData.map((u: User, i: number) => (
                 <Sheet>
                   <SheetTrigger asChild>
                     <TableRow
@@ -189,7 +241,9 @@ export function AccountList() {
                         {u.fullName} <Badge>{u.role}</Badge>
                       </TableCell>
                       <TableCell>{u.email}</TableCell>
-                      <TableCell>{u.created_at}</TableCell>
+                      <TableCell>
+                        {dayjs(u.created_at).format("DD MMMM YYYY")}
+                      </TableCell>
                     </TableRow>
                   </SheetTrigger>
                   <SheetContent className="space-y-4">
@@ -201,7 +255,19 @@ export function AccountList() {
                       <Input
                         value={nama}
                         onChange={(e) => setNama(e.target.value)}
+                        maxLength={20}
                       />
+                      <p
+                        className={`text-xs text-muted-foreground ${
+                          nama.length < 1 && "text-red-500"
+                        }`}
+                      >
+                        (
+                        {nama.length < 1
+                          ? `1 / ${nama.length}`
+                          : `${nama.length} / 20`}
+                        )
+                      </p>
                     </div>
                     <div>
                       <label>role</label>
@@ -215,7 +281,7 @@ export function AccountList() {
                         </SelectContent>
                       </Select>
                     </div>
-                    <Button className="w-full" onClick={UpdateAccount}>
+                    <Button className="w-full" onClick={UpdateAccount} disabled={nama.length < 1}>
                       simpan
                     </Button>
                   </SheetContent>

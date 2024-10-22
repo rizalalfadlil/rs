@@ -12,6 +12,7 @@ import React, { useEffect, useState } from "react";
 import { Header } from "../../components/Header";
 import dayjs from "dayjs";
 import "dayjs/locale/id";
+import { Footer } from "../../components/Footer";
 dayjs.locale("id");
 export default function News() {
   const [newsData, setNewsData]: any = useState([]);
@@ -74,9 +75,9 @@ export default function News() {
           )}
         </div>
       </div>
-      <footer className="p-4 md:p-8 bg-primary text-primary-foreground">
-        2024 - Nama Aplikasi
-      </footer>
+      <Footer />
     </main>
   );
 }
+
+

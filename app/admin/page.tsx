@@ -5,25 +5,33 @@ import { AccountList } from "../../components/AccountList";
 import { ReviewPage } from "../../components/ReviewPage";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { DoorOpen } from "lucide-react";
+import { DoorOpen, User } from "lucide-react";
 import NewsPage from "@/components/NewsPage";
 import ConsoleToaster from "@/components/ConsoleToaster";
 import { Input } from "@/components/ui/input";
 import { getUserData, login, logout } from "@/backend/controler/account";
 import { auth } from "@/backend/firebase"; // Impor auth dari Firebase
 import { onAuthStateChanged } from "firebase/auth"; // Impor untuk mendeteksi perubahan status autentikasi
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogFooter, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogFooter,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 export default function Page() {
   const [Page, setPage] = useState("akun");
+  const [userData, setUserData]: any = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const pagesList: any = {
     akun: <AccountList />,
     review: <ReviewPage />,
-    berita: <NewsPage />,
+    berita: <NewsPage userData={userData} />,
   };
-  const [userData, setUserData]:any = useState();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
   interface User {
     fullName: string;
@@ -62,29 +70,51 @@ export default function Page() {
       {userData ? (
         <>
           <Sidebar page={Page} setPage={setPage} />
-          <div className="bg-muted grow p-4 space-y-4 overflow-y-scroll h-screen">
+          <div className="bg-muted grow p-4 space-y-4 overflow-y-scroll h-screen flex flex-col">
             <Card className="flex items-center justify-between p-4">
               <div>
-                <p>hello, {userData.fullName || "user"}</p>
+                <p className="text-sm">hello</p>
+                <p className="text-2xl font-semibold">
+                  {userData.fullName || "user"}
+                </p>
               </div>
               <div>
                 <AlertDialog>
                   <AlertDialogTrigger asChild>
-                  <Button variant="ghost">
-                  <DoorOpen />
-                </Button>
+                    <Button variant="ghost">
+                      <DoorOpen /> Log-out
+                    </Button>
                   </AlertDialogTrigger>
                   <AlertDialogContent>
                     <AlertDialogTitle>Yakin ingin log out ?</AlertDialogTitle>
                     <AlertDialogFooter>
-                      <AlertDialogAction onClick={logout}>log out</AlertDialogAction>
+                      <AlertDialogAction onClick={logout}>
+                        log out
+                      </AlertDialogAction>
                       <AlertDialogCancel>batal</AlertDialogCancel>
                     </AlertDialogFooter>
                   </AlertDialogContent>
                 </AlertDialog>
               </div>
             </Card>
-            {pagesList[Page]}
+            {pagesList[Page] ? (
+              pagesList[Page]
+            ) : (
+              <div className="space-y-4">
+                <p className="font-semibold text-xl">Halaman Utama</p>
+                <Card className="grid sm:grid-cols-3 p-4 h-40">
+                <p className="p-4 flex gap-4 items-center font-medium justify-center hover:bg-muted rounded-md cursor-pointer" onClick={()=>setPage("akun")}>
+                  <User/> Berita
+                </p>
+                <p className="p-4 flex gap-4 items-center font-medium justify-center hover:bg-muted rounded-md cursor-pointer" onClick={()=>setPage("akun")}>
+                  <User/> Akun
+                </p>
+                <p className="p-4 flex gap-4 items-center font-medium justify-center hover:bg-muted rounded-md cursor-pointer" onClick={()=>setPage("akun")}>
+                  <User/> Akun
+                </p>
+                </Card>
+              </div>
+            )}
           </div>
         </>
       ) : (

@@ -24,7 +24,6 @@ const ConsoleToaster = () => {
 
   return (
     <div>
-      {/* Toaster akan memunculkan semua toast yang dipanggil */}
       <Toaster />
     </div>
   );

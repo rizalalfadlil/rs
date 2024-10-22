@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
-import { ArrowLeft, Pencil, Plus, Trash, Undo2 } from "lucide-react";
+import { ArrowLeft, Pencil, Plus, Search, Trash, Undo2 } from "lucide-react";
 import WriteNewsPage from "./newsCreate";
 import { DeleteNews, getNewsList } from "@/backend/controler/news";
 import {
@@ -15,8 +15,13 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "./ui/alert-dialog";
+import { Input } from "./ui/input";
 
-export default function NewsPage() {
+export default function NewsPage({
+  userData,
+}: {
+  userData: { fullName: string };
+}) {
   const [newsData, setNewsData]: any = useState([]);
   const [selectedNews, setSelectedNews] = useState(-1);
   const [writingMode, setWritingMode] = useState(false);
@@ -26,12 +31,33 @@ export default function NewsPage() {
   }, []);
   const getNewsData = async () => {
     setNewsData(await getNewsList());
+    setFilteredData(await getNewsList());
     setWritingMode(false);
   };
   const deleteNews = async () => {
-    await DeleteNews(newsData[selectedNews].id)
-    setSelectedNews(-1)
-    getNewsData()
+    await DeleteNews(newsData[selectedNews].id);
+    setSelectedNews(-1);
+    getNewsData();
+  };
+  const [searchTerm, setSearchTerm] = useState(""); // State untuk term pencarian
+  const [filteredData, setFilteredData] = useState(newsData);
+
+  const handleSearch = (value: string) => {
+    setSearchTerm(value); // Mengupdate term pencarian
+    setFilteredData(filterData(newsData, value)); // Mengupdate hasil pencarian
+  };
+
+  // Fungsi filter untuk mencari berdasarkan semua key
+  const filterData = (data: any[], searchTerm: string) => {
+    if (!searchTerm) {
+      return data;
+    }
+
+    return data.filter((item) =>
+      Object.values(item).some((value: any) =>
+        value.toString().toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    );
   };
   return (
     <>
@@ -52,10 +78,12 @@ export default function NewsPage() {
                   data={newsData[selectedNews]}
                   id={newsData[selectedNews].id}
                   getNewsData={getNewsData}
+                  userData={userData}
                 />
               </>
             ) : (
               <div className="space-y-4">
+                
                 <div className="flex items-center justify-between">
                   <div>
                     <Button variant="ghost" onClick={() => setSelectedNews(-1)}>
@@ -83,7 +111,9 @@ export default function NewsPage() {
                           </AlertDialogDescription>
                         </AlertDialogHeader>
                         <AlertDialogFooter>
-                          <AlertDialogAction onClick={deleteNews}>hapus</AlertDialogAction>
+                          <AlertDialogAction onClick={deleteNews}>
+                            hapus
+                          </AlertDialogAction>
                           <AlertDialogCancel>batal</AlertDialogCancel>
                         </AlertDialogFooter>
                       </AlertDialogContent>
@@ -117,11 +147,22 @@ export default function NewsPage() {
                   <Undo2 />
                 </Button>
               </div>
-              <WriteNewsPage getNewsData={getNewsData} />
+              <WriteNewsPage getNewsData={getNewsData} userData={userData} />
             </>
           ) : (
             <div className="space-y-2">
-              {newsData.map(
+              <div className="rounded-md border flex items-center">
+                  <div className="p-2 px-4 text-muted-foreground">
+                    <Search />
+                  </div>
+                  <Input
+                    placeholder="cari"
+                    value={searchTerm}
+                    onChange={(e) => handleSearch(e.target.value)}
+                    className="border-0 grow"
+                  />
+                </div>
+              {filteredData.map(
                 (
                   n: {
                     judul: string;

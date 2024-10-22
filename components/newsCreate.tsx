@@ -4,20 +4,20 @@ import "react-quill/dist/quill.snow.css";
 import { SaveNewsToFirebase } from "@/backend/controler/news"; // Impor fungsi Firebase
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import { X } from "lucide-react";
 
 const WriteNewsPage = ({
   data,
   id,
   getNewsData,
+  userData,
 }: {
   data?: any;
   id?: string;
   getNewsData: any;
+  userData: { fullName: string };
 }) => {
   const [judul, setjudul] = useState("");
-  const [imageFile, setImageFile] = useState(null);
-  const [penulis, setpenulis] = useState("");
+  const [imageFile, setImageFile]: any = useState(null);
   const [teks, setteks] = useState("");
   const [imageUrl, setImageUrl] = useState("");
 
@@ -25,24 +25,23 @@ const WriteNewsPage = ({
     clearForm();
     if (data) {
       setjudul(data.judul || "");
-      setpenulis(data.penulis || "");
       setteks(data.teks || "");
       setImageFile(null);
     }
   }, [data]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
     const newsData = {
       judul,
-      penulis,
+      penulis: userData.fullName,
       teks,
       gambar: data?.gambar || "", // Gunakan gambar dari data jika tidak ada file baru
     };
 
     try {
-      await SaveNewsToFirebase(id, newsData, imageFile);
+      await SaveNewsToFirebase(newsData, imageFile, id);
 
       getNewsData();
     } catch (error) {
@@ -53,11 +52,10 @@ const WriteNewsPage = ({
   const clearForm = () => {
     setjudul("");
     setImageFile(null);
-    setpenulis("");
     setteks("");
   };
 
-  const handleImageChange = (e) => {
+  const handleImageChange = (e: any) => {
     if (e.target.files && e.target.files[0]) {
       setImageFile(e.target.files[0]);
       setImageUrl(URL.createObjectURL(e.target.files[0]));
@@ -82,6 +80,7 @@ const WriteNewsPage = ({
               onChange={(e) => setjudul(e.target.value)}
               placeholder="Masukkan judul berita"
               required
+              maxLength={100}
             />
           </div>
           <div className="mb-4">
@@ -95,11 +94,21 @@ const WriteNewsPage = ({
               required={!id} // Gambar wajib untuk create, tidak wajib untuk update
             />
             {imageUrl && (
-              <div
-                className="w-full h-60 bg-center bg-cover bg-no-repeat mt-4 rounded-md relative"
-                style={{ backgroundImage: `url("${imageUrl}")` }}
-              >
-              </div>
+              <>
+                <div
+                  className="w-full h-60 bg-center bg-cover bg-no-repeat mt-4 rounded-md relative"
+                  style={{ backgroundImage: `url("${imageUrl}")` }}
+                ></div>
+                {imageFile && (
+                  <p
+                    className={`text-xs text-muted-foreground ${
+                      imageFile.size > 5000000 && "text-red-500"
+                    }`}
+                  >
+                    {(imageFile.size / 1000000).toFixed(2)} MB / 5 MB
+                  </p>
+                )}
+              </>
             )}
           </div>
 
@@ -107,13 +116,7 @@ const WriteNewsPage = ({
             <label className="block mb-2 text-sm font-medium text-gray-700">
               Penulis
             </label>
-            <Input
-              type="text"
-              value={penulis}
-              onChange={(e) => setpenulis(e.target.value)}
-              placeholder="Masukkan nama penulis"
-              required
-            />
+            <Input disabled value={userData.fullName} />
           </div>
 
           <div className="mb-6">
@@ -130,7 +133,8 @@ const WriteNewsPage = ({
 
           <Button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-600 text-white"
+            className="w-full"
+            disabled={!judul || !teks || (imageFile && imageFile.size > 5000000)}
           >
             {id ? "Perbarui Berita" : "Publikasikan Berita"}
           </Button>

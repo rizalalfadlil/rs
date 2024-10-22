@@ -1,7 +1,12 @@
-import { Flag, Newspaper, Star, User } from "lucide-react";
+import { Flag, Home, Newspaper, Star, User } from "lucide-react";
 import React from "react";
 export function Sidebar({ page, setPage }: any) {
   const menuList = [
+    {
+      target: "beranda",
+      icon: <Home />,
+      text: "beranda",
+    },
     {
       target: "berita",
       icon: <Newspaper />,
@@ -17,18 +22,14 @@ export function Sidebar({ page, setPage }: any) {
       icon: <User />,
       text: "akun",
     },
-    {
-      target: "banner",
-      icon: <Flag />,
-      text: "banner",
-    },
+    
   ];
   const MenuItem = ({ target, icon, text }: any) => {
     return (
       <div
         className={`hover:bg-muted ${
           page == target && "bg-muted"
-        } capitalize cursor-pointer rounded-md font-bold transition-all duration-300 p-2 px-4 flex items-center gap-6`}
+        } capitalize cursor-pointer rounded-md font-bold transition-all duration-300 p-4 flex items-center gap-6`}
         onClick={()=>setPage(target)}
       >
         <span>{icon}</span>

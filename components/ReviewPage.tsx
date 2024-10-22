@@ -13,7 +13,7 @@ import {
 import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-import { Minus, Plus, Save, Trash } from "lucide-react";
+import { Minus, Plus, Save, Search, Trash } from "lucide-react";
 import {
   CreateReview,
   DeleteReview,
@@ -33,16 +33,17 @@ import {
 } from "./ui/alert-dialog";
 
 export function ReviewPage({}) {
-  const [reviews, setReviews] = useState([]);
+  const [reviews, setReviews]: any[] = useState([]);
 
   const [nama, setNama] = useState("");
   const [jabatan, setjabatan] = useState("");
   const [ulasan, setUlasan] = useState("");
   const [rating, setRating] = useState(0);
-  const [id, setId] = useState("")
+  const [id, setId] = useState("");
   async function getReviewData() {
-    const res = await GetAllReview();
+    const res: any = await GetAllReview();
     setReviews(res);
+    setFilteredData(res);
     clearForm();
   }
   async function AddReview() {
@@ -56,20 +57,26 @@ export function ReviewPage({}) {
     setjabatan("");
     setUlasan("");
     setRating(0);
-    setId("")
+    setId("");
   }
-  async function selectReview(data: { nama: any; jabatan: any; ulasan: any; rating: any; id?: any; }) {
+  async function selectReview(data: {
+    nama: any;
+    jabatan: any;
+    ulasan: any;
+    rating: any;
+    id?: any;
+  }) {
     setNama(data.nama);
     setjabatan(data.jabatan);
     setUlasan(data.ulasan);
     setRating(data.rating);
-    setId(data.id)
+    setId(data.id);
   }
   async function updateReview() {
-    const data = {nama,jabatan,ulasan, rating}
-    await SetReview(data, id)
-    getReviewData()
-    window.location.reload()
+    const data = { nama, jabatan, ulasan, rating };
+    await SetReview(data, id);
+    getReviewData();
+    window.location.reload();
   }
   async function deleteReview(id: string) {
     DeleteReview(id);
@@ -78,98 +85,151 @@ export function ReviewPage({}) {
   useEffect(() => {
     getReviewData();
   }, []);
+  const [searchTerm, setSearchTerm] = useState(""); // State untuk term pencarian
+  const [filteredData, setFilteredData] = useState(reviews);
+
+  const handleSearch = (value: string) => {
+    setSearchTerm(value); // Mengupdate term pencarian
+    setFilteredData(filterData(reviews, value)); // Mengupdate hasil pencarian
+  };
+
+  // Fungsi filter untuk mencari berdasarkan semua key
+  const filterData = (data: any[], searchTerm: string) => {
+    if (!searchTerm) {
+      return data;
+    }
+
+    return data.filter((item) =>
+      Object.values(item).some((value: any) =>
+        value.toString().toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    );
+  };
   return (
     <Card>
       <CardHeader>
         <CardTitle>Testimoni</CardTitle>
       </CardHeader>
-      <CardContent className="grid md:grid-cols-2 gap-2">
-        {reviews.map((r:{nama:string,jabatan:string,ulasan:string,rating:string|number,id:string}, i) => (
-          <Sheet key={i}>
-            <SheetTrigger asChild>
-              <div
-                className="space-y-2 hover:bg-muted transition-all duration-300 p-4 rounded-md cursor-pointer"
-                onClick={() => selectReview(r)}
-              >
-                <div>
-                  <p className=" font-bold">{r.nama}</p>
-                  <p className="text-xs">{r.jabatan}</p>
-                </div>
-                <div className="space-y-2">
-                  <p className="text-sm break-words">{r.ulasan}</p>
-                  <p className="font-bold">{r.rating}/5</p>
-                </div>
-              </div>
-            </SheetTrigger>
-            <SheetContent>
-              <SheetHeader>
-                <SheetTitle>Review dari {r.nama}</SheetTitle>
-                <SheetDescription>{r.jabatan}</SheetDescription>
-              </SheetHeader>
-              <div className="py-4 space-y-4">
-                <div>
-                  <label htmlFor="">review</label>
-                  <Textarea
-                    value={ulasan}
-                    onChange={(e) => setUlasan(e.target.value)}
-                    rows={8}
-                    className="resize-none"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="">rating</label>
-                  <div className="flex gap-2 items-center">
-                    <Input
-                      type="number"
-                      className="grow"
-                      value={rating}
-                      min={0}
-                      max={5}
-                      onChange={(e) => setRating(e.target.value)}
-                    />
-                    <Button
-                      onClick={() => rating > 0.5 && setRating(rating - 0.5)}
-                    >
-                      <Minus />
-                    </Button>
-                    <Button
-                      onClick={() => rating <= 4.5 && setRating(rating + 0.5)}
-                    >
-                      <Plus />
-                    </Button>
+      <CardContent className="space-y-4">
+        <div className="rounded-md border flex items-center">
+          <div className="p-2 px-4 text-muted-foreground">
+            <Search />
+          </div>
+          <Input
+            placeholder="cari"
+            value={searchTerm}
+            onChange={(e) => handleSearch(e.target.value)}
+            className="border-0 grow"
+          />
+        </div>
+        <div className="grid md:grid-cols-2 gap-2">
+          {filteredData.map(
+            (
+              r: {
+                nama: string;
+                jabatan: string;
+                ulasan: string;
+                rating: string | number;
+                id: string;
+              },
+              i: number
+            ) => (
+              <Sheet key={i}>
+                <SheetTrigger asChild>
+                  <div
+                    className="space-y-2 hover:bg-muted transition-all duration-300 p-4 rounded-md cursor-pointer"
+                    onClick={() => selectReview(r)}
+                  >
+                    <div>
+                      <p className=" font-bold">{r.nama}</p>
+                      <p className="text-xs">{r.jabatan}</p>
+                    </div>
+                    <div className="space-y-2">
+                      <p className="text-sm break-words">{r.ulasan}</p>
+                      <p className="font-bold">{r.rating}/5</p>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <SheetFooter className="grid grid-cols-2">
-                <Button onClick={updateReview}>
-                  <Save /> simpan
-                </Button>
-                <AlertDialog>
-                  <AlertDialogTrigger asChild>
-                    <Button variant="secondary">
-                      <Trash /> hapus
+                </SheetTrigger>
+                <SheetContent>
+                  <SheetHeader>
+                    <SheetTitle>Review dari {r.nama}</SheetTitle>
+                    <SheetDescription>{r.jabatan}</SheetDescription>
+                  </SheetHeader>
+                  <div className="py-4 space-y-4">
+                    <div>
+                      <label htmlFor="">review</label>
+                      <Textarea
+                        value={ulasan}
+                        onChange={(e) => setUlasan(e.target.value)}
+                        rows={8}
+                        className="resize-none"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="">rating</label>
+                      <div className="flex gap-2 items-center">
+                        <Input
+                          type="number"
+                          className="grow"
+                          value={rating}
+                          min={0}
+                          max={5}
+                          onChange={(e) => setRating(Number(e.target.value))}
+                        />
+                        <Button
+                          onClick={() =>
+                            rating > 0.5 && setRating(rating - 0.5)
+                          }
+                        >
+                          <Minus />
+                        </Button>
+                        <Button
+                          onClick={() =>
+                            rating <= 4.5 && setRating(rating + 0.5)
+                          }
+                        >
+                          <Plus />
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                  <SheetFooter className="grid grid-cols-2">
+                    <Button
+                      onClick={updateReview}
+                      disabled={jabatan == "" || ulasan == ""}
+                    >
+                      <Save /> simpan
                     </Button>
-                  </AlertDialogTrigger>
-                  <AlertDialogContent>
-                    <AlertDialogHeader>
-                      <AlertDialogTitle>konfirmasi hapus data</AlertDialogTitle>
-                      <AlertDialogDescription>
-                        hapus data {r.id} ?
-                      </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                      <AlertDialogAction onClick={() => deleteReview(r.id)}>
-                        hapus
-                      </AlertDialogAction>
-                      <AlertDialogCancel>batal</AlertDialogCancel>
-                    </AlertDialogFooter>
-                  </AlertDialogContent>
-                </AlertDialog>
-              </SheetFooter>
-            </SheetContent>
-          </Sheet>
-        ))}
-        <Sheet>
+                    <AlertDialog>
+                      <AlertDialogTrigger asChild>
+                        <Button variant="secondary">
+                          <Trash /> hapus
+                        </Button>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>
+                            konfirmasi hapus data
+                          </AlertDialogTitle>
+                          <AlertDialogDescription>
+                            hapus data {r.id} ?
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogAction onClick={() => deleteReview(r.id)}>
+                            hapus
+                          </AlertDialogAction>
+                          <AlertDialogCancel>batal</AlertDialogCancel>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
+                  </SheetFooter>
+                </SheetContent>
+              </Sheet>
+            )
+          )}
+        </div>
+        <Sheet onOpenChange={clearForm}>
           <SheetTrigger asChild>
             <Button className="h-auto border-dashed" variant="outline">
               <Plus />
@@ -210,7 +270,7 @@ export function ReviewPage({}) {
                     value={rating}
                     min={0}
                     max={5}
-                    onChange={(e) => setRating(e.target.value)}
+                    onChange={(e) => setRating(Number(e.target.value))}
                   />
                   <Button
                     onClick={() => rating > 0.5 && setRating(rating - 0.5)}

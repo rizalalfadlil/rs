@@ -23,7 +23,6 @@ const db = getFirestore(app);
 const storage = getStorage(app);
 // Fungsi untuk membuat atau memperbarui berita di Firestore dan Storage
 export const SaveNewsToFirebase = async (
-  id: string,
   newsData: {
     judul?: string;
     penulis?: string;
@@ -31,7 +30,8 @@ export const SaveNewsToFirebase = async (
     gambar: any;
     dibuat?: any;
   },
-  imageFile: any
+  imageFile: any,
+  id?: string
 ) => {
   try {
     // Jika ada gambar yang diunggah
