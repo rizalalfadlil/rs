@@ -42,7 +42,8 @@ export async function register(
 
     console.log("Registrasi berhasil");
   } catch (error) {
-    console.log("Error saat registrasi: ", error);
+    console.log("Registrasi Gagal");
+    console.error(error)
   }
 }
 // Fungsi untuk login pengguna
@@ -111,7 +112,7 @@ export async function getUsersList() {
 export async function updateAccount(data: { fullName: string; role: string; email: string; created_at: number; }, id: string) {
   try {
     await setDoc(doc(db, "users", id), data);
-    console.log("Document updated with ID: ", id);
+    console.log("Berhasil memperbarui akun");
   } catch (e) {
     console.error(e);
   }

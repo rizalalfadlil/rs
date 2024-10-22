@@ -26,8 +26,8 @@ export async function GetAllReview() {
 }
 export async function CreateReview(data: { nama: string; jabatan: string; ulasan: string; rating: number; }) {
   try {
-    const docRef = await addDoc(collection(db, "review"), data);
-    console.log("Document written with ID: ", docRef.id);
+    await addDoc(collection(db, "review"), data);
+    console.log("Berhasil membuat review");
   } catch (e) {
     console.error(e);
   }
@@ -35,7 +35,7 @@ export async function CreateReview(data: { nama: string; jabatan: string; ulasan
 export async function DeleteReview(id:string) {
   try {
     await deleteDoc(doc(db, "review", id));
-    console.log("Document deleted with ID: ", id);
+    console.log("Berhasil menghapus review");
   } catch (e) {
     console.error(e);
   }
@@ -43,7 +43,7 @@ export async function DeleteReview(id:string) {
 export async function SetReview(data: { nama: string; jabatan: string; ulasan: string; rating: number; }, id: string) {
   try{
     await setDoc(doc(db,"review", id), data)
-    console.log("Document updated with ID: ", id);
+    console.log("Berhasil memperbarui review");
   }catch(e){
     console.error(e)
   }
