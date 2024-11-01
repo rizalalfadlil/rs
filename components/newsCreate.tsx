@@ -1,9 +1,10 @@
+"use client";
 import React, { useEffect, useState } from "react";
-import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { SaveNewsToFirebase } from "@/backend/controler/news"; // Impor fungsi Firebase
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
+import TiptapEditor from "./TipTapEditor";
 
 const WriteNewsPage = ({
   data,
@@ -123,8 +124,7 @@ const WriteNewsPage = ({
             <label className="block mb-2 text-sm font-medium text-gray-700">
               Isi Berita
             </label>
-            <ReactQuill
-              theme="snow"
+            <TiptapEditor
               value={teks}
               onChange={setteks}
               placeholder="Tulis berita di sini"
@@ -134,7 +134,9 @@ const WriteNewsPage = ({
           <Button
             type="submit"
             className="w-full"
-            disabled={!judul || !teks || (imageFile && imageFile.size > 5000000)}
+            disabled={
+              !judul || !teks || (imageFile && imageFile.size > 5000000)
+            }
           >
             {id ? "Perbarui Berita" : "Publikasikan Berita"}
           </Button>

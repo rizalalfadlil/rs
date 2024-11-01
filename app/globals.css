@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -59,12 +58,33 @@
     --chart-5: 340 75% 55%;
   }
 }
-
+.tiptap {
+  outline: none !important;
+}
 @layer base {
   * {
     @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
+  }
+  .responsive-padding {
+    @apply p-4 md:px-20 lg:px-40 xl:px-60 2xl:px-80;
+  }
+  @keyframes marquee {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  /* Tambahkan class untuk animasi marquee */
+  .animate-marquee {
+    display: inline-block;
+    white-space: nowrap;
+    animation: marquee linear infinite;
+    animation-play-state: running;
   }
 }
