@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import React, { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -60,9 +61,9 @@ export function ReviewPage({}) {
     setId("");
   }
   async function selectReview(data: {
-    nama: any;
-    jabatan: any;
-    ulasan: any;
+    nama: string;
+    jabatan: string;
+    ulasan: string;
     rating: any;
     id?: any;
   }) {
@@ -94,7 +95,7 @@ export function ReviewPage({}) {
   };
 
   // Fungsi filter untuk mencari berdasarkan semua key
-  const filterData = (data: any[], searchTerm: string) => {
+  const filterData = (data: never[], searchTerm: string) => {
     if (!searchTerm) {
       return data;
     }

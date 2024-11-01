@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   addDoc,
   collection,
@@ -47,7 +49,6 @@ export const SaveNewsToFirebase = async (
       // Tunggu sampai upload selesai dan dapatkan URL gambar
       const snapshot = await uploadTask;
       imageUrl = await getDownloadURL(snapshot.ref);
-      console.log("uploaded" + imageUrl);
     }
 
     // Update newsData dengan URL gambar
@@ -61,7 +62,7 @@ export const SaveNewsToFirebase = async (
     if (id) {
       const newsDocRef = doc(db, "news", id);
       await updateDoc(newsDocRef, updatedNewsData);
-      console.log("Berita berhasil diperbarui:", id);
+      console.log("Berita berhasil diperbarui");
     } else {
       await addDoc(collection(db, "news"), updatedNewsData);
     }
@@ -92,7 +93,7 @@ export async function getOneNews(id: string) {
 export async function DeleteNews(id: string) {
   try {
     await deleteDoc(doc(db, "news", id));
-    console.log("Document deleted with ID: ", id);
+    console.log("Berita berhasil dihapus");
   } catch (e) {
     console.error(e);
   }

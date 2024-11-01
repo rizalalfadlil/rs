@@ -1,11 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import React, { SetStateAction, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Sidebar } from "../../components/Sidebar";
 import { AccountList } from "../../components/AccountList";
 import { ReviewPage } from "../../components/ReviewPage";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { DoorOpen, User } from "lucide-react";
+import { DoorOpen, Newspaper, Star, User } from "lucide-react";
 import NewsPage from "@/components/NewsPage";
 import ConsoleToaster from "@/components/ConsoleToaster";
 import { Input } from "@/components/ui/input";
@@ -104,13 +105,13 @@ export default function Page() {
                 <p className="font-semibold text-xl">Halaman Utama</p>
                 <Card className="grid sm:grid-cols-3 p-4 h-40">
                 <p className="p-4 flex gap-4 items-center font-medium justify-center hover:bg-muted rounded-md cursor-pointer" onClick={()=>setPage("akun")}>
-                  <User/> Berita
-                </p>
-                <p className="p-4 flex gap-4 items-center font-medium justify-center hover:bg-muted rounded-md cursor-pointer" onClick={()=>setPage("akun")}>
                   <User/> Akun
                 </p>
-                <p className="p-4 flex gap-4 items-center font-medium justify-center hover:bg-muted rounded-md cursor-pointer" onClick={()=>setPage("akun")}>
-                  <User/> Akun
+                <p className="p-4 flex gap-4 items-center font-medium justify-center hover:bg-muted rounded-md cursor-pointer" onClick={()=>setPage("review")}>
+                  <Newspaper/> Berita
+                </p>
+                <p className="p-4 flex gap-4 items-center font-medium justify-center hover:bg-muted rounded-md cursor-pointer" onClick={()=>setPage("berita")}>
+                  <Star/> Testimoni
                 </p>
                 </Card>
               </div>
