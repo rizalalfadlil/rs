@@ -71,20 +71,11 @@
   .responsive-padding {
     @apply p-4 md:px-20 lg:px-40 xl:px-60 2xl:px-80;
   }
-  @keyframes marquee {
-    0% {
-      transform: translateX(100%);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
-  }
-
-  /* Tambahkan class untuk animasi marquee */
-  .animate-marquee {
-    display: inline-block;
-    white-space: nowrap;
-    animation: marquee linear infinite;
-    animation-play-state: running;
+  @font-face {
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(/fonts/Quicksand-VariableFont_wght.ttf) format('ttf');
   }
 }

@@ -68,8 +68,9 @@ export default function page({ params }: any) {
             <div className="bg-muted text-muted-foreground border p-4 rounded-md space-y-4">
               <p>baca juga</p>
               <div className="grid gap-4 sm:grid-cols-3">
-                {randomNews(newsList, 3).map((n: news) => (
+                {randomNews(newsList, 3).map((n: news,i:number) => (
                   <Card
+                  key={i}
                     className="hover:bg-muted cursor-pointer transition-color duration-300"
                     onClick={() => (window.location.href = `/news/${n.id}`)}
                   >
