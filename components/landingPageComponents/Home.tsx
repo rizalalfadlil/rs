@@ -1,5 +1,5 @@
 import { Button } from "../ui/button";
-
+import { motion } from "framer-motion";
 export const Home = ({
   teks1 = "n",
   teks2 = "",
@@ -11,21 +11,38 @@ export const Home = ({
   return (
     <section className="grid md:grid-cols-2 min-h-screen responsive-padding">
       <div className="grid content-center space-y-5">
-        <p className="text-xs font-bold text-muted-foreground tracking-widest">
+        <motion.p
+          initial={{ opacity: 0, translateY:100 }}
+          transition={{ duration: 2, ease: "easeInOut" }}
+          whileInView={{ opacity: 100, translateY:0 }}
+          className="text-xs font-bold text-muted-foreground tracking-widest"
+        >
           {teks1}
-        </p>
-        <p className="font-bold text-4xl text-primary">{teks2}</p>
-        <p className="font-medium text-muted-foreground">{teks3}</p>
-        <div className="grid md:flex items-center gap-6">
+        </motion.p>
+        <motion.p 
+        initial={{ opacity: 0, translateY:100 }}
+          transition={{ duration: 2, ease: "easeInOut" }}
+          whileInView={{ opacity: 100, translateY:0 }} className="font-bold text-4xl text-primary">{teks2}</motion.p>
+        <motion.p 
+        initial={{ opacity: 0, translateY:100 }}
+          transition={{ duration: 2, ease: "easeInOut" }}
+          whileInView={{ opacity: 100, translateY:0 }} className="font-medium text-muted-foreground">{teks3}</motion.p>
+        <motion.div 
+        initial={{ opacity: 0, translateY:100 }}
+          transition={{ duration: 2, ease: "easeInOut" }}
+          whileInView={{ opacity: 100, translateY:0 }} className="grid md:flex items-center gap-6">
           <Button className="rounded-full">{teksSelengkapnya}</Button>
           <Button variant="outline" className="rounded-full">
             {teksKontak}
           </Button>
-        </div>
+        </motion.div>
       </div>
       <div className=" grid place-content-center">
-        <img
-          src={urlGambar}
+        <motion.img
+          
+          initial={{ opacity: 0, translateY:100 }}
+          transition={{ duration: 3, ease: "easeInOut" }}
+          whileInView={{ opacity: 100, translateY:0 }}src={urlGambar}
           style={{
             maxWidth: "100%",
           }}
