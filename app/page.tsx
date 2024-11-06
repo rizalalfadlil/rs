@@ -46,16 +46,17 @@ const info = {
 //hampir semua teks nya contoh asal-asalan, harus diganti semua
 const sections = [
   <Home
-    teks1="Nama Aplikasi"
-    teks2="Teks Sambutan Berukuran Besar"
-    teks3="Teks Sambutan Berukuran Kecil"
+    teks1="PARAMEDIKA HOMECARE"
+    teks2="Kini berobat tidak perlu keluar rumah, Dokter dan Perawat Kami siap mengobati Anda dirumah."
+    teks3="Biaya dokter dan suster terjangkau,
+            mulai dari Rp 250.000"
     teksSelengkapnya={
       <>
         Lihat Selengkapnya <ArrowDown />
       </>
     }
     teksKontak="Kontak Kami"
-    urlGambar="./gummy-medical-lab.svg"
+    urlGambar="./homecare.png"
   />,
   //bebas hapus bagian (<Komponen ... />) yang mana aja kalo kebanyakan/ ga penting/ ga ada datanya
   <Tentang

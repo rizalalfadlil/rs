@@ -119,31 +119,40 @@ export default function Page() {
           </div>
         </>
       ) : (
-        <div className="w-full grid sm:grid-cols-2 bg-muted">
-          <div className="p-8 xl:px-20 bg-background border grid content-center">
-            <div className="space-y-4">
-              <p className="text-2xl font-bold">Admin Login</p>
-              <div>
-                <label>email</label>
-                <Input
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </div>
-              <div>
-                <label>password</label>
-                <Input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
-              <Button className="w-full" onClick={LoginAction}>
-                Log in
-              </Button>
-            </div>
+        <div className="w-full min-h-screen flex items-center justify-center bg-gradient-to-r from-green-500 to-white">
+        <div className="w-full max-w-md bg-white rounded-lg shadow-lg overflow-hidden">
+          <div className="p-8 border-b-2 border-gray-100 flex flex-col items-center">
+            <img src="logo.png" alt="Admin Login" className="w-16 h-16 mb-2" />
+            <p className="text-gray-600 mt-2 text-center">Admin Login</p>
           </div>
+          <div className="p-8 space-y-8">
+  <div>
+    <label className="block text-sm font-medium text-gray-700">Email</label>
+    <Input
+      value={email}
+      onChange={(e) => setEmail(e.target.value)}
+      className="w-full mt-2 p-3 border rounded-lg shadow-sm transition duration-200 ease-in-out hover:shadow-md focus:shadow-lg focus:border-green-500 focus:ring focus:ring-green-300 focus:ring-opacity-50"
+    />
+  </div>
+  <div>
+    <label className="block text-sm font-medium text-gray-700">Password</label>
+    <Input
+      type="password"
+      value={password}
+      onChange={(e) => setPassword(e.target.value)}
+      className="w-full mt-2 p-3 border rounded-lg shadow-sm transition duration-200 ease-in-out hover:shadow-md focus:shadow-lg focus:border-green-500 focus:ring focus:ring-green-300 focus:ring-opacity-50"
+    />
+  </div>
+  <Button
+    className="w-full py-3 bg-gradient-to-r from-green-500 to-blue-600 text-white font-semibold rounded-lg shadow-md hover:from-green-600 hover:to-blue-700 focus:outline-none focus:ring-4 focus:ring-green-500 focus:ring-opacity-50 transition duration-300 transform hover:-translate-y-1 hover:shadow-lg"
+    onClick={LoginAction}
+  >
+    Log in
+  </Button>
+</div>
+
         </div>
+      </div>     
       )}
       <ConsoleToaster />
     </div>
