@@ -14,11 +14,11 @@ export function Berita({}) {
     getNewsData();
   }, []);
   return (
-    <section className="responsive-padding min-h-screen grid content-center gap-4">
-      <p className="text-3xl font-bold">Blog</p>
+    <section className="responsive-padding min-h-dvh grid content-center gap-4">
+      <p className="text-3xl font-bold text-primary">Blog</p>
       <motion.div initial={{ opacity: 0, translateY:100 }}
-          transition={{ duration: 2, ease: "easeInOut" }}
-          whileInView={{ opacity: 100, translateY:0 }} className="grid md:grid-cols-3 gap-2">
+          transition={{ duration: 0.6, ease: "easeInOut" }}
+          whileInView={{ opacity: 100, translateY:0 }} className="grid md:grid-cols-3 2xl:grid-cols-4 gap-2">
         {newsData.slice(0,3).map((n: { gambar: any; id: any; judul: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined; }, i: Key | null | undefined) => (
           <div key={i} className="p-4 space-y-2 rounded-md hover:bg-muted transition-all duration-300">
             <div

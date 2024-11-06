@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-key */
-"use client"
+"use client";
 import { Faq } from "@/components/landingPageComponents/Faq";
 import { Tentang } from "@/components/landingPageComponents/Tentang";
 import { Pencapaian } from "@/components/landingPageComponents/Pencapaian";
@@ -20,26 +20,29 @@ import { Berita } from "@/components/landingPageComponents/Berita";
 import { Ulasan } from "@/components/landingPageComponents/Ulasan";
 import { Header } from "@/components/landingPageComponents/Header";
 import { Home } from "@/components/landingPageComponents/Home";
-
+import Layanan from "@/components/landingPageComponents/Services";
+import ScrollToTop from "@/components/ScrollToTop";
+import { FloatingButton } from "../components/FloatingButton";
 
 //edit teks disini
-const info = {
-  nama:"paramadika homecare",
-  logo:"./logo.png",
-  kontak:{
-    GMapLink:"https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15843.233204955519!2d107.69076162053221!3d-6.913509687874907!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sid!4v1730504466701!5m2!1sen!2sid",
-    alamat:"Jalan...",
-    email:"email@gmail.com",
-    telepon:"081234567890"
+export const info = {
+  nama: "paramadika homecare",
+  logo: "./logo.png",
+  kontak: {
+    GMapLink:
+      "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15843.233204955519!2d107.69076162053221!3d-6.913509687874907!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sid!4v1730504466701!5m2!1sen!2sid",
+    alamat: "Jalan...",
+    email: "email@gmail.com",
+    telepon: "081234567890",
   },
-  sosial:{
+  sosial: {
     //opsional
-    instagram:"https://instagram.com/nama",
-    facebook:"https://facebook.com/nama",
-    twitter:"https://twitter.com/nama",
-    linkedin:"https://linkedin.com/nama",
-  }
-}
+    instagram: "https://instagram.com/nama",
+    facebook: "https://facebook.com/nama",
+    twitter: "https://twitter.com/nama",
+    linkedin: "https://linkedin.com/nama",
+  },
+};
 
 //edit teks disini
 
@@ -59,6 +62,27 @@ const sections = [
     urlGambar="./homecare.png"
   />,
   //bebas hapus bagian (<Komponen ... />) yang mana aja kalo kebanyakan/ ga penting/ ga ada datanya
+  <Layanan
+    judul="Layanan Kami"
+    deskripsi={`Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
+  blanditiis rem voluptatibus similique, unde expedita illum officiis,
+  cupiditate aliquam laborum provident ducimus. Vel nostrum voluptatem
+  in aut! Error, quod voluptates?`}
+    konten={[
+      {
+        gambar: "https://img.icons8.com/nolan/512/apple-settings.png",
+        judul: "Layanan 1",
+        isi: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam
+      veniam sint`,
+      },
+      {
+        gambar: "https://img.icons8.com/clouds/500/settings.png",
+        judul: "Layanan 2",
+        isi: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam
+      veniam sint`,
+      },
+    ]}
+  />,
   <Tentang
     judul="kenapa harus memilih kami"
     deskripsi={`Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos tempore
@@ -128,8 +152,8 @@ const sections = [
     ]}
   />,
 
-  //data ulasan & berita isinya di halaman admin
-  <Ulasan />,
+  //data ulasan & berita isinya dari halaman admin
+  <Ulasan judul="Ulasan" deskripsi="deskripsi ulasan" />,
   <Berita />,
 ];
 export default function LandingPage() {
@@ -143,6 +167,7 @@ export default function LandingPage() {
           </div>
         ))}
       </main>
+      <FloatingButton />
       <Footer />
     </div>
   );
@@ -163,31 +188,42 @@ function Footer({}) {
             <p>Jalan....</p>
           </div>
           <div className="space-y-2">
-            {info.kontak.email && (<a href="mailto:" className="flex items-center gap-2">
-              <Mail />
-              <span>{info.kontak.email}</span>
-            </a>)}
-            {info.kontak.telepon && (<a className="flex items-center gap-2">
-              <Phone />
-              <span>{info.kontak.telepon}</span>
-            </a>)}
+            {info.kontak.email && (
+              <a
+                href={`mailto:${info.kontak.email}`}
+                className="flex items-center gap-2"
+              >
+                <Mail />
+                <span>{info.kontak.email}</span>
+              </a>
+            )}
+            {info.kontak.telepon && (
+              <a className="flex items-center gap-2">
+                <Phone />
+                <span>{info.kontak.telepon}</span>
+              </a>
+            )}
           </div>
         </div>
         <div className="grid gap-4 content-start">
           <b>Sosial Media</b>
-          {info.sosial.instagram && (<Button variant="ghost" className="justify-start">
-            <Instagram />
-            {info.sosial.instagram}
-          </Button>)}
-          {info.sosial.facebook && (<Button variant="ghost" className="justify-start">
-            <Facebook />
-            {info.sosial.facebook}
-          </Button>)}
+          {info.sosial.instagram && (
+            <Button variant="ghost" className="justify-start">
+              <Instagram />
+              {info.sosial.instagram}
+            </Button>
+          )}
+          {info.sosial.facebook && (
+            <Button variant="ghost" className="justify-start">
+              <Facebook />
+              {info.sosial.facebook}
+            </Button>
+          )}
           {info.sosial.linkedin && (
             <Button variant="ghost" className="justify-start">
-            <Linkedin />
-            {info.sosial.linkedin}
-          </Button>
+              <Linkedin />
+              {info.sosial.linkedin}
+            </Button>
           )}
         </div>
         <div className="grid gap-4 content-start">

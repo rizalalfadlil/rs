@@ -10,11 +10,11 @@ import {
 import { motion } from "framer-motion";
 export function Tentang({ judul, deskripsi, gambar, konten }: any) {
   return (
-    <section className="min-h-screen responsive-padding grid md:grid-cols-2">
+    <section className="min-h-dvh responsive-padding grid md:grid-cols-2">
       <div className="grid place-content-center">
         <motion.div
           initial={{ opacity: 0, translateY: 100 }}
-          transition={{ duration: 1, ease: "easeInOut" }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
           whileInView={{ opacity: 100, translateY: 0 }}
           className=" bg-center bg-contain bg-no-repeat w-40 md:w-60 xl:w-80 aspect-square grid place-content-center"
           style={{
@@ -24,7 +24,7 @@ export function Tentang({ judul, deskripsi, gambar, konten }: any) {
       </div>
       <motion.div
         initial={{ opacity: 0, translateY: 100 }}
-        transition={{ duration: 2, ease: "easeInOut" }}
+        transition={{ duration: 0.6, ease: "easeInOut" }}
         whileInView={{ opacity: 100, translateY: 0 }}
         className="grid content-center gap-4"
       >

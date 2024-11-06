@@ -26,7 +26,7 @@ export default function News() {
   }, []);
 
   return (
-    <main className="flex min-h-screen flex-col">
+    <main className="flex min-h-dvh flex-col">
       <Header />
       <div className="grow p-4">
         <div className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-4">

@@ -42,7 +42,7 @@ export default function page({ params }: any) {
   };
 
   return (
-    <main className="flex min-h-screen flex-col">
+    <main className="flex min-h-dvh flex-col">
       <Header />
       <div className="grow md:px-40 xl:px-80">
         {news ? (

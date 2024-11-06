@@ -33,7 +33,7 @@ export function Header({ sections, logo }: any) {
     );
   });
   return (
-    <header className="fixed responsive-padding pt-8 w-full ">
+    <header className="fixed responsive-padding top-8 w-full ">
       <div className="rounded-full p-4 z-80 px-8 border backdrop-blur-sm bg-background/70 flex justify-between">
         <div
           className="h-10 aspect-square bg-contain bg-no-repeat bg-center"

@@ -67,7 +67,7 @@ export default function Page() {
   };
 
   return (
-    <div className="flex w-full min-h-screen">
+    <div className="flex w-full min-h-dvh">
       {userData ? (
         <>
           <Sidebar page={Page} setPage={setPage} />
@@ -119,7 +119,7 @@ export default function Page() {
           </div>
         </>
       ) : (
-        <div className="w-full min-h-screen flex items-center justify-center bg-gradient-to-r from-green-500 to-white">
+        <div className="w-full min-h-dvh flex items-center justify-center bg-gradient-to-r from-green-500 to-white">
         <div className="w-full max-w-md bg-white rounded-lg shadow-lg overflow-hidden">
           <div className="p-8 border-b-2 border-gray-100 flex flex-col items-center">
             <img src="logo.png" alt="Admin Login" className="w-16 h-16 mb-2" />

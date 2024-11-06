@@ -9,10 +9,10 @@ import {
 import { motion } from "framer-motion";
 export function Partner({ judul, deskripsi, konten }: any) {
   return (
-    <section className="responsive-padding min-h-screen bg-primary space-y-20 text-white grid content-center">
+    <section className="responsive-padding min-h-dvh bg-primary space-y-20 text-white grid content-center">
       <motion.div
         initial={{ opacity: 0, translateY: 100 }}
-        transition={{ duration: 2, ease: "easeInOut" }}
+        transition={{ duration: 0.6, ease: "easeInOut" }}
         whileInView={{ opacity: 100, translateY: 0 }}
       >
         <p className="text-3xl font-bold">{judul}</p>
@@ -20,7 +20,7 @@ export function Partner({ judul, deskripsi, konten }: any) {
       </motion.div>
       <motion.div
         initial={{ opacity: 0, translateY: 100 }}
-        transition={{ duration: 1, ease: "easeInOut" }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
         whileInView={{ opacity: 100, translateY: 0 }}
         className="flex gap-8 flex-wrap justify-center"
       >
