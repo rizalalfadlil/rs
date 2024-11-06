@@ -19,8 +19,8 @@ export default function Layanan({
         whileInView={{ opacity: 100, translateY: 0 }}
         className="space-y-2"
       >
-        <p className="text-3xl font-bold capitalize text-primary">{judul}</p>
-        <p className="">{deskripsi}</p>
+        <p className="text-3xl text-center font-bold capitalize text-primary">{judul}</p>
+        <p className="text-center ">{deskripsi}</p>
       </motion.div>
       <motion.div initial={{ opacity: 0, translateY:100 }}
           transition={{ duration: 0.9, ease: "easeInOut" }}

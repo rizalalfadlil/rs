@@ -15,7 +15,7 @@ export function Berita({}) {
   }, []);
   return (
     <section className="responsive-padding min-h-dvh grid content-center gap-4">
-      <p className="text-3xl font-bold text-primary">Blog</p>
+      <p className="text-3xl text-center font-bold text-primary">Blog</p>
       <motion.div initial={{ opacity: 0, translateY:100 }}
           transition={{ duration: 0.6, ease: "easeInOut" }}
           whileInView={{ opacity: 100, translateY:0 }} className="grid md:grid-cols-3 2xl:grid-cols-4 gap-2">

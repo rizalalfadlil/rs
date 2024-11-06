@@ -64,39 +64,66 @@ const sections = [
   //bebas hapus bagian (<Komponen ... />) yang mana aja kalo kebanyakan/ ga penting/ ga ada datanya
   <Layanan
     judul="Layanan Kami"
-    deskripsi={`Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
-  blanditiis rem voluptatibus similique, unde expedita illum officiis,
-  cupiditate aliquam laborum provident ducimus. Vel nostrum voluptatem
-  in aut! Error, quod voluptates?`}
+    deskripsi={`Kami menyediakan pilihan terbaik untuk Anda. 
+      Sesuaikan dengan kebutuhan kesehatan Anda dan pastikan Anda menjalani 
+      perawatan dengan dokter kami yang berkualifikasi tinggi, Anda dapat 
+      berkonsultasi dengan kami jenis layanan mana yang cocok untuk kesehatan Anda`}
     konten={[
       {
-        gambar: "https://img.icons8.com/nolan/512/apple-settings.png",
-        judul: "Layanan 1",
-        isi: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam
-      veniam sint`,
+        gambar: "./layanan2.png",
+        judul: "Consultation",
+        isi: `Free consultation with our trusted doctors and get the best recomendations`,
       },
       {
-        gambar: "https://img.icons8.com/clouds/500/settings.png",
-        judul: "Layanan 2",
-        isi: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam
-      veniam sint`,
+        gambar: "./HOME.png",
+        judul: "Homecare",
+        isi: `Buy  your medicines with our mobile application with a simple delivery system`,
+      },
+      {
+        gambar: "./image9.png",
+        judul: "Midwife Services",
+        isi: `Choose your doctor from thousands of specialist, general, and trusted hospitals`,
+      },
+      {
+        gambar: "./image10.png",
+        judul: "Caregiver",
+        isi: `Free consultation with our trusted doctors and get the best recomendations`,
+      },
+      {
+        gambar: "./image11.png",
+        judul: "Homecare",
+        isi: `Track and save your medical history and health data `,
+      },
+      {
+        gambar: "",
+        judul: "Homecare",
+        isi: `Buy  your medicines with our mobile application with a simple delivery system`,
+      },
+      {
+        gambar: "",
+        judul: "Homecare",
+        isi: `Buy  your medicines with our mobile application with a simple delivery system`,
+      },
+      {
+        gambar: "",
+        judul: "Homecare",
+        isi: `Buy  your medicines with our mobile application with a simple delivery system`,
       },
     ]}
   />,
   <Tentang
-    judul="kenapa harus memilih kami"
-    deskripsi={`Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos tempore
-      iste obcaecati optio unde perferendis perspiciatis adipisci in maxime
-      doloremque rerum quo doloribus, consectetur est ipsa voluptate animi
-      natus. Cum.`}
-    gambar="./pixeltrue-icons-seo-ads-on-google-1.svg"
+    judul="ParamedikaHomecare.com, Solusinya!"
+    // deskripsi={`Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos tempore
+    //   iste obcaecati optio unde perferendis perspiciatis adipisci in maxime
+    //   doloremque rerum quo doloribus, consectetur est ipsa voluptate animi
+    //   natus. Cum.`}
+    gambar="./wanita.png"
     konten={[
-      "semua dalam paket gratis, plus",
-      "akses lebih awal ke fitur baru",
-      "Tersedia di seluruh penjuru indonesia",
-      "Respons cepat, selalu aktif 24 jam",
-      "Gratis selamanya",
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      "Layanan medical homecare yang aman nyaman dan terpercaya.",
+      "Fasilitas lengkap sesuai dengan kebutuhan anda.",
+      "Tenaga kesehatan professional dan bersertifikat.",
+      "Pelayanan kesehatan langsung di rumah anda.",
+      "Konsultasi gratis dan Cepat dan sigap.",
     ]}
   />,
   <Pencapaian

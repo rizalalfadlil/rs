@@ -33,7 +33,7 @@ export function Ulasan({
   return (
     <section className="responsive-padding min-h-dvh grid content-center space-y-8">
       <div className="space-y-2">
-        <p className="text-3xl font-bold text-primary">{judul}</p>
+        <p className="text-3xl text-center font-bold text-primary">{judul}</p>
         <p className="text-lg font-bold text-muted-foreground">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
           dignissimos cumque ad aut laborum optio nihil animi magni ipsam? Hic

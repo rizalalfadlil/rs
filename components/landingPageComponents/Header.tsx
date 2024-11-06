@@ -33,36 +33,49 @@ export function Header({ sections, logo }: any) {
     );
   });
   return (
-    <header className="fixed responsive-padding top-8 w-full ">
-      <div className="rounded-full p-4 z-80 px-8 border backdrop-blur-sm bg-background/70 flex justify-between">
-        <div
-          className="h-10 aspect-square bg-contain bg-no-repeat bg-center"
-          style={{ backgroundImage: `url("${logo}")` }}
-        />
-        <div className="hidden md:flex items-center gap-2 text-sm">
-          {navs.slice(0, 3)}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="link" className="rounded-full">
-                <Menu />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              {dropNavs.slice(3, dropNavs.length)}
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
-        <div className="flex md:hidden items-center gap-2 text-sm">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="link" className="rounded-full">
-                <Menu />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>{dropNavs}</DropdownMenuContent>
-          </DropdownMenu>
-        </div>
-      </div>
-    </header>
+    <header className="fixed top-8 w-full z-50 responsive-padding">
+  <div className="rounded-full p-4 px-8 border shadow-lg backdrop-blur-md bg-white/80 flex justify-between items-center transition-all duration-300">
+  
+    {/* Logo */}
+    <div className="flex items-center gap-2">
+  {/* Logo */}
+  <div
+    className="h-10 w-10 bg-contain bg-no-repeat bg-center rounded-full shadow-sm transition-transform duration-300 transform hover:scale-105"
+    style={{ backgroundImage: `url("${logo}")` }}
+  />
+  {/* Text */}
+  <p className="text-gray-800 font-semibold text-lg">ParamedikaHomecare</p>
+</div>
+
+    {/* Desktop Navigation */}
+    <div className="hidden md:flex items-center gap-4 text-sm text-gray-700 font-medium">
+      {navs.slice(0, 3)}
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="link" className="rounded-full p-2 hover:bg-gray-100 transition duration-300">
+            <Menu className="text-lg text-gray-700" />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="bg-white border border-gray-200 rounded-lg shadow-lg p-2 text-gray-700">
+          {dropNavs.slice(3)}
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </div>
+
+    {/* Mobile Navigation */}
+    <div className="flex md:hidden items-center gap-2 text-sm">
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="link" className="rounded-full p-2 hover:bg-gray-100 transition duration-300">
+            <Menu className="text-xl text-gray-700" />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="bg-white border border-gray-200 rounded-lg shadow-lg p-2 text-gray-700">
+          {dropNavs}
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </div>
+  </div>
+</header>
   );
 }
