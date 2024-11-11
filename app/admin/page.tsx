@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import React, { useEffect, useState } from "react";
-import { Sidebar } from "../../components/Sidebar";
-import { AccountList } from "../../components/AccountList";
-import { ReviewPage } from "../../components/ReviewPage";
+import { Sidebar, menuList } from "../../components/Sidebar";
+import { AccountList } from "../../components/adminPagesSection/AccountList";
+import { ReviewPage } from "../../components/adminPagesSection/ReviewPage";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { DoorOpen, Newspaper, Star, User } from "lucide-react";
-import NewsPage from "@/components/NewsPage";
+import NewsPage from "@/components/adminPagesSection/NewsPage";
 import ConsoleToaster from "@/components/ConsoleToaster";
 import { getUserData, login, logout } from "@/backend/controler/account";
 import { auth } from "@/backend/firebase"; // Impor auth dari Firebase
@@ -21,6 +21,8 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import GalleryPage from "@/components/adminPagesSection/GalleryPage";
+import OrderPage from "@/components/adminPagesSection/OrderPage";
 
 export default function Page() {
   const [Page, setPage] = useState("akun");
@@ -31,6 +33,8 @@ export default function Page() {
     akun: <AccountList />,
     review: <ReviewPage />,
     berita: <NewsPage userData={userData} />,
+    galeri:<GalleryPage/>,
+    order:<OrderPage userData={userData}/>
   };
 
   interface User {
@@ -103,15 +107,11 @@ export default function Page() {
               <div className="space-y-4">
                 <p className="font-semibold text-xl">Halaman Utama</p>
                 <Card className="grid sm:grid-cols-3 p-4 h-40">
-                <p className="p-4 flex gap-4 items-center font-medium justify-center hover:bg-muted rounded-md cursor-pointer" onClick={()=>setPage("akun")}>
-                  <User/> Akun
-                </p>
-                <p className="p-4 flex gap-4 items-center font-medium justify-center hover:bg-muted rounded-md cursor-pointer" onClick={()=>setPage("review")}>
-                  <Newspaper/> Berita
-                </p>
-                <p className="p-4 flex gap-4 items-center font-medium justify-center hover:bg-muted rounded-md cursor-pointer" onClick={()=>setPage("berita")}>
-                  <Star/> Testimoni
-                </p>
+                  {menuList.map((m,i)=>(
+                    <p className="p-4 flex gap-4 items-center font-medium justify-center hover:bg-muted rounded-md cursor-pointer" onClick={()=>setPage(m.target)}>
+                    {m.icon} {m.text}
+                  </p>
+                  ))}
                 </Card>
               </div>
             )}

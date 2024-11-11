@@ -45,11 +45,12 @@ export const Home = ({
           <Button
             className="rounded-full"
             onClick={() => (window.location.href = "#section-2")}
+            variant="outline"
           >
             {teksSelengkapnya}
           </Button>
           <KontakDialog>
-            <Button variant="outline" className="rounded-full">
+            <Button variant="default" className="rounded-full">
               {teksKontak}
             </Button>
           </KontakDialog>

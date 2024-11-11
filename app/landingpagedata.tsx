@@ -2,7 +2,7 @@
 import { Berita } from "@/components/landingPageComponents/Berita";
 import { Faq } from "@/components/landingPageComponents/Faq";
 import { Home } from "@/components/landingPageComponents/Home";
-import { Partner } from "@/components/landingPageComponents/Partner";
+import { Galeri } from "@/components/landingPageComponents/Galeri";
 import { Pencapaian } from "@/components/landingPageComponents/Pencapaian";
 import Layanan from "@/components/landingPageComponents/Services";
 import { Tentang } from "@/components/landingPageComponents/Tentang";
@@ -38,12 +38,8 @@ export const info = {
       teks2="Kini berobat tidak perlu keluar rumah, Dokter dan Perawat Kami siap mengobati Anda dirumah."
       teks3="Biaya dokter dan suster terjangkau,
               mulai dari Rp 250.000"
-      teksSelengkapnya={
-        <>
-          Lihat Selengkapnya <ArrowDown />
-        </>
-      }
-      teksKontak="Kontak Kami"
+      teksSelengkapnya="Lihat Selengkapnya"
+      teksKontak="Pesan Sekarang"
       urlGambar="./homecare.png"
     />,
     //bebas hapus bagian (<Komponen ... />) yang mana aja kalo kebanyakan/ ga penting/ ga ada datanya
@@ -151,20 +147,13 @@ export const info = {
         */
       ]}
     />,
-    <Partner
-      judul="Partner kami"
+    <Galeri
+      judul="Galeri"
       deskripsi={`Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum
     reiciendis neque odit sint cum ut molestiae quae, nam quasi inventore
     laboriosam perferendis quaerat exercitationem, debitis facere
     perspiciatis? Nostrum, ad sint.`}
-      konten={[
-        {
-          gambar: "https://img.icons8.com/ios-filled/100/tiktok--v1.png",
-          judul: "tiktok",
-        },
-        //cara nambahinnya kopas yang di atas terus ganti teks nya
-        //gambarnya harus png/svg warna hitam polos
-      ]}
+      konten={["https://img.icons8.com/ios-filled/100/tiktok--v1.png"]}
     />,
     <Faq
       konten={[

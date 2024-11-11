@@ -9,9 +9,9 @@ import {
 } from "@/components/ui/card";
 import React, { useEffect, useState } from "react";
 import { Header } from "../../components/Header";
+import { Footer } from "../../components/Footer";
 import dayjs from "dayjs";
 import "dayjs/locale/id";
-import { Footer } from "../../components/Footer";
 dayjs.locale("id");
 export default function News() {
   const [newsData, setNewsData]: any = useState([]);
