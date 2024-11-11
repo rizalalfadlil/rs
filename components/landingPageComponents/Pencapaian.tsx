@@ -8,7 +8,7 @@ export function Pencapaian({
   judul: string;
   deskripsi: string;
   konten: {
-    ikon: React.JSX.Element | Element | ReactNode;
+    ikon: React.JSX.Element | Element | ReactNode |any;
     jumlah: number;
     judul: string;
     warna: string;

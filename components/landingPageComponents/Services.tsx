@@ -1,5 +1,4 @@
 import React from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { motion } from "framer-motion";
 import {
   Dialog,
@@ -42,7 +41,7 @@ export default function Layanan({
         className="grid md:grid-cols-3 xl:grid-cols-4 py-2 gap-4"
       >
         {konten.map((k, i) => (
-          <Dialog>
+          <Dialog key={i}>
             <DialogTrigger asChild>
               <div className="p-4 flex flex-col justify-center rounded-xl hover:bg-muted transition-all duration-300 border">
                 <img src={k.gambar} alt={k.gambar} />
