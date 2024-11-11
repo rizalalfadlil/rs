@@ -2,7 +2,7 @@ import React from "react";
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "./ui/dialog";
 import { Button } from "./ui/button";
 import { Mail, MapPin, Phone } from "lucide-react";
-import { info } from "@/app/page";
+import { info } from "@/app/landingpagedata";
 
 export default function KontakDialog({ children }: any) {
   return (
