@@ -3,7 +3,6 @@
 import { ArrowUp, LayoutGrid, Phone, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
-import KontakDialog from "./KontakDialog";
 
 export function FloatingButton({}) {
   const [open, setOpen] = useState(false);
@@ -34,11 +33,9 @@ function Collapsible({}) {
         rendered ? "scale-100" : "scale-0"
       }`}
     >
-      <KontakDialog>
-        <Button className="rounded-full">
-          <Phone /> kontak kami
-        </Button>
-      </KontakDialog>
+      <Button className="rounded-full" onClick={() => (window.location.href = "#footer")}>
+        <Phone /> kontak kami
+      </Button>
       <Button
         className="rounded-full"
         variant="secondary"
