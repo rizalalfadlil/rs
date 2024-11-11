@@ -107,167 +107,64 @@ export function ReviewPage({}) {
     );
   };
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Testimoni</CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        <div className="rounded-md border flex items-center">
-          <div className="p-2 px-4 text-muted-foreground">
-            <Search />
-          </div>
-          <Input
-            placeholder="cari"
-            value={searchTerm}
-            onChange={(e) => handleSearch(e.target.value)}
-            className="border-0 grow"
-          />
-        </div>
-        <div className="grid md:grid-cols-2 gap-2">
-          {filteredData.map(
-            (
-              r: {
-                nama: string;
-                jabatan: string;
-                ulasan: string;
-                rating: string | number;
-                id: string;
-              },
-              i: number
-            ) => (
-              <Sheet key={i}>
-                <SheetTrigger asChild>
-                  <div
-                    className="space-y-2 hover:bg-muted transition-all duration-300 p-4 rounded-md cursor-pointer"
-                    onClick={() => selectReview(r)}
-                  >
-                    <div>
-                      <p className=" font-bold">{r.nama}</p>
-                      <p className="text-xs">{r.jabatan}</p>
-                    </div>
-                    <div className="space-y-2">
-                      <p className="text-sm break-words">{r.ulasan}</p>
-                      <p className="font-bold">{r.rating}/5</p>
-                    </div>
-                  </div>
-                </SheetTrigger>
-                <SheetContent>
-                  <SheetHeader>
-                    <SheetTitle>Review dari {r.nama}</SheetTitle>
-                    <SheetDescription>{r.jabatan}</SheetDescription>
-                  </SheetHeader>
-                  <div className="py-4 space-y-4">
-                    <div>
-                      <label htmlFor="">review</label>
-                      <Textarea
-                        value={ulasan}
-                        onChange={(e) => setUlasan(e.target.value)}
-                        rows={8}
-                        className="resize-none"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="">rating</label>
-                      <div className="flex gap-2 items-center">
-                        <Input
-                          type="number"
-                          className="grow"
-                          value={rating}
-                          min={0}
-                          max={5}
-                          onChange={(e) => setRating(Number(e.target.value))}
-                        />
-                        <Button
-                          onClick={() =>
-                            rating > 0.5 && setRating(rating - 0.5)
-                          }
-                        >
-                          <Minus />
-                        </Button>
-                        <Button
-                          onClick={() =>
-                            rating <= 4.5 && setRating(rating + 0.5)
-                          }
-                        >
-                          <Plus />
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                  <SheetFooter className="grid grid-cols-2">
-                    <Button
-                      onClick={updateReview}
-                      disabled={jabatan == "" || ulasan == ""}
-                    >
-                      <Save /> simpan
-                    </Button>
-                    <AlertDialog>
-                      <AlertDialogTrigger asChild>
-                        <Button variant="secondary">
-                          <Trash /> hapus
-                        </Button>
-                      </AlertDialogTrigger>
-                      <AlertDialogContent>
-                        <AlertDialogHeader>
-                          <AlertDialogTitle>
-                            konfirmasi hapus data
-                          </AlertDialogTitle>
-                          <AlertDialogDescription>
-                            hapus data {r.id} ?
-                          </AlertDialogDescription>
-                        </AlertDialogHeader>
-                        <AlertDialogFooter>
-                          <AlertDialogAction onClick={() => deleteReview(r.id)}>
-                            hapus
-                          </AlertDialogAction>
-                          <AlertDialogCancel>batal</AlertDialogCancel>
-                        </AlertDialogFooter>
-                      </AlertDialogContent>
-                    </AlertDialog>
-                  </SheetFooter>
-                </SheetContent>
-              </Sheet>
-            )
-          )}
-        </div>
-        <Sheet onOpenChange={clearForm}>
+    <Card className="shadow-lg rounded-md">
+  <CardHeader className="p-4 border-b">
+    <CardTitle className="text-xl font-semibold text-primary">Testimoni</CardTitle>
+  </CardHeader>
+  <CardContent className="space-y-6 p-4">
+    {/* Search bar */}
+    <div className="flex items-center border rounded-md shadow-sm p-2">
+      <div className="px-4 text-muted-foreground">
+        <Search />
+      </div>
+      <Input
+        placeholder="Cari testimoni..."
+        value={searchTerm}
+        onChange={(e) => handleSearch(e.target.value)}
+        className="border-0 grow"
+      />
+    </div>
+    
+    {/* Testimonials grid */}
+    <div className="grid md:grid-cols-2 gap-4">
+      {filteredData.map((r, i) => (
+        <Sheet key={i}>
           <SheetTrigger asChild>
-            <Button className="h-auto border-dashed" variant="outline">
-              <Plus />
-              buat baru
-            </Button>
+            <div
+              className="p-4 space-y-2 hover:bg-muted-light transition duration-300 rounded-md cursor-pointer shadow-sm border"
+              onClick={() => selectReview(r)}
+            >
+              <div>
+                <p className="text-lg font-bold text-primary">{r.nama}</p>
+                <p className="text-sm text-muted-foreground">{r.jabatan}</p>
+              </div>
+              <div className="space-y-1">
+                <p className="text-sm">{r.ulasan}</p>
+                <p className="text-sm font-semibold">{r.rating}/5</p>
+              </div>
+            </div>
           </SheetTrigger>
-          <SheetContent>
+          <SheetContent className="space-y-4 p-6">
             <SheetHeader>
-              <SheetTitle>buat ulasan</SheetTitle>
+              <SheetTitle className="text-lg font-bold">Review dari {r.nama}</SheetTitle>
+              <SheetDescription>{r.jabatan}</SheetDescription>
             </SheetHeader>
-            <div className="space-y-2 py-2">
+            <div className="py-4 space-y-4">
               <div>
-                <label htmlFor="">nama</label>
-                <Input value={nama} onChange={(e) => setNama(e.target.value)} />
-              </div>
-              <div>
-                <label htmlFor="">jabatan</label>
-                <Input
-                  value={jabatan}
-                  onChange={(e) => setjabatan(e.target.value)}
-                />
-              </div>
-              <div>
-                <label htmlFor="">review</label>
+                <label>Review</label>
                 <Textarea
-                  rows={8}
-                  className="resize-none"
                   value={ulasan}
                   onChange={(e) => setUlasan(e.target.value)}
+                  rows={8}
+                  className="resize-none border rounded-md p-2"
                 />
               </div>
               <div>
-                <label htmlFor="">rating</label>
+                <label>Rating</label>
                 <div className="flex gap-2 items-center">
                   <Input
                     type="number"
-                    className="grow"
+                    className="border rounded-md p-2 flex-grow"
                     value={rating}
                     min={0}
                     max={5}
@@ -275,27 +172,127 @@ export function ReviewPage({}) {
                   />
                   <Button
                     onClick={() => rating > 0.5 && setRating(rating - 0.5)}
+                    className="p-2 bg-gray-200 rounded-full"
                   >
                     <Minus />
                   </Button>
                   <Button
                     onClick={() => rating <= 4.5 && setRating(rating + 0.5)}
+                    className="p-2 bg-gray-200 rounded-full"
                   >
                     <Plus />
                   </Button>
                 </div>
               </div>
-              <Button
-                onClick={AddReview}
-                disabled={nama == "" || jabatan == "" || ulasan == ""}
-                className="w-full"
-              >
-                Simpan
-              </Button>
             </div>
+            <SheetFooter className="flex justify-between">
+              <Button
+                onClick={updateReview}
+                disabled={!ulasan}
+                className="flex-grow bg-primary text-white"
+              >
+                <Save /> Simpan
+              </Button>
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button variant="secondary" className="ml-2">
+                    <Trash /> Hapus
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Konfirmasi Hapus</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      Apakah Anda yakin ingin menghapus review ini?
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogAction onClick={() => deleteReview(r.id)}>
+                      Hapus
+                    </AlertDialogAction>
+                    <AlertDialogCancel>Batal</AlertDialogCancel>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+            </SheetFooter>
           </SheetContent>
         </Sheet>
-      </CardContent>
-    </Card>
+      ))}
+    </div>
+    
+    {/* Add new review button */}
+    <Sheet onOpenChange={clearForm}>
+      <SheetTrigger asChild>
+        <Button className="w-full border-dashed p-4 hover:bg-muted-light transition duration-200">
+          <Plus /> Buat Baru
+        </Button>
+      </SheetTrigger>
+      <SheetContent className="space-y-4 p-6">
+        <SheetHeader>
+          <SheetTitle className="text-lg font-bold">Buat Ulasan Baru</SheetTitle>
+        </SheetHeader>
+        <div className="space-y-4">
+          <div>
+            <label>Nama</label>
+            <Input
+              value={nama}
+              onChange={(e) => setNama(e.target.value)}
+              className="border rounded-md p-2"
+            />
+          </div>
+          <div>
+            <label>Jabatan</label>
+            <Input
+              value={jabatan}
+              onChange={(e) => setJabatan(e.target.value)}
+              className="border rounded-md p-2"
+            />
+          </div>
+          <div>
+            <label>Review</label>
+            <Textarea
+              value={ulasan}
+              onChange={(e) => setUlasan(e.target.value)}
+              rows={8}
+              className="resize-none border rounded-md p-2"
+            />
+          </div>
+          <div>
+            <label>Rating</label>
+            <div className="flex gap-2 items-center">
+              <Input
+                type="number"
+                className="border rounded-md p-2 flex-grow"
+                value={rating}
+                min={0}
+                max={5}
+                onChange={(e) => setRating(Number(e.target.value))}
+              />
+              <Button
+                onClick={() => rating > 0.5 && setRating(rating - 0.5)}
+                className="p-2 bg-gray-200 rounded-full"
+              >
+                <Minus />
+              </Button>
+              <Button
+                onClick={() => rating <= 4.5 && setRating(rating + 0.5)}
+                className="p-2 bg-gray-200 rounded-full"
+              >
+                <Plus />
+              </Button>
+            </div>
+          </div>
+          <Button
+            onClick={AddReview}
+            disabled={!nama || !jabatan || !ulasan}
+            className="w-full bg-primary text-white hover:bg-primary-dark transition duration-200"
+          >
+            Simpan
+          </Button>
+        </div>
+      </SheetContent>
+    </Sheet>
+  </CardContent>
+</Card>
   );
 }

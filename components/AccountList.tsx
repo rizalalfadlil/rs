@@ -118,179 +118,166 @@ export function AccountList() {
   };
 
   return (
-    <div className="flex gap-4">
-      <Card className="grow">
-        <CardHeader>
-          <CardTitle>Account</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="rounded-md border flex items-center">
-            <div className="p-2 px-4 text-muted-foreground">
-              <Search />
-            </div>
-            <Input
-              placeholder="cari"
-              value={searchTerm}
-              onChange={(e) => handleSearch(e.target.value)}
-              className="border-0 grow"
-            />
+    <div className="flex flex-col gap-6">
+    <Card className="shadow-md hover:shadow-lg transition-shadow duration-200 grow">
+      <CardHeader className="border-b p-4">
+        <CardTitle className="text-xl font-semibold text-primary">Account Management</CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-6 p-4">
+        <div className="flex items-center gap-2 border rounded-md p-2">
+          <div className="p-2 text-muted-foreground">
+            <Search />
           </div>
-          <Sheet onOpenChange={clearForm}>
-            <SheetTrigger asChild>
-              <Button
-                onClick={createAccount}
-                className="flex items-center gap-2 my-4"
-              >
-                <Plus /> Buat akun baru
-              </Button>
-            </SheetTrigger>
-            <SheetContent className="space-y-4">
-              <SheetHeader>
-                <SheetTitle>buat akun baru</SheetTitle>
-              </SheetHeader>
-              <div>
-                <label>nama</label>
-                <Input
-                  value={nama}
-                  onChange={(e) => setNama(e.target.value)}
-                  maxLength={50}
-                />
-                <p className="text-xs text-muted-foreground">
-                  ({nama.length} / 50)
-                </p>
-              </div>
-              <div>
-                <label>email</label>
-                <Input
-                  value={email}
-                  type="email"
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                <p
-                  className={`text-xs ${
-                    !isValidEmail(email) && "text-red-500"
-                  }`}
-                >
-                  ({isValidEmail(email) ? "valid email" : "invalid email"})
-                </p>
-              </div>
-              <div>
-                <label>password</label>
-                <Input
-                  value={password}
-                  type="password"
-                  onChange={(e) => setPassword(e.target.value)}
-                  maxLength={20}
-                />
-                <p
-                  className={`text-xs text-muted-foreground ${
-                    password.length < 8 && "text-red-500"
-                  }`}
-                >
-                  (
-                  {password.length < 8
-                    ? `8 / ${password.length}`
-                    : `${password.length} / 20`}
-                  )
-                </p>
-              </div>
-
-              <div>
-                <label>role</label>
-                <Select value={role} onValueChange={setRole}>
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="user">User</SelectItem>
-                    <SelectItem value="admin">Admin</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <Button
-                className="w-full"
-                onClick={RegisterAccount}
-                disabled={
-                  nama.length < 1 || !isValidEmail(email) || password.length < 8
-                }
-              >
-                Register
-              </Button>
-            </SheetContent>
-          </Sheet>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>nama</TableHead>
-                <TableHead>email</TableHead>
-                <TableHead>dibuat</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {filteredData.map((u: User, i: number) => (
-                <Sheet>
-                  <SheetTrigger asChild>
-                    <TableRow
-                      key={i}
-                      onClick={() => selectAccount(i)}
-                      className={`${
-                        i === index && clicked && "bg-muted"
-                      } cursor-pointer`}
-                    >
-                      <TableCell>
-                        {u.fullName} <Badge>{u.role}</Badge>
-                      </TableCell>
-                      <TableCell>{u.email}</TableCell>
-                      <TableCell>
-                        {dayjs(u.created_at).format("DD MMMM YYYY")}
-                      </TableCell>
-                    </TableRow>
-                  </SheetTrigger>
-                  <SheetContent className="space-y-4">
-                    <SheetHeader>
-                      <SheetTitle>edit akun</SheetTitle>
-                    </SheetHeader>
-                    <div>
-                      <label>nama</label>
-                      <Input
-                        value={nama}
-                        onChange={(e) => setNama(e.target.value)}
-                        maxLength={20}
-                      />
-                      <p
-                        className={`text-xs text-muted-foreground ${
-                          nama.length < 1 && "text-red-500"
-                        }`}
-                      >
-                        (
-                        {nama.length < 1
-                          ? `1 / ${nama.length}`
-                          : `${nama.length} / 20`}
-                        )
-                      </p>
-                    </div>
-                    <div>
-                      <label>role</label>
-                      <Select value={role} onValueChange={setRole}>
-                        <SelectTrigger>
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="user">User</SelectItem>
-                          <SelectItem value="admin">Admin</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <Button className="w-full" onClick={UpdateAccount} disabled={nama.length < 1}>
-                      simpan
-                    </Button>
-                  </SheetContent>
-                </Sheet>
-              ))}
-            </TableBody>
-          </Table>
-        </CardContent>
-      </Card>
-    </div>
+          <Input
+            placeholder="Cari akun..."
+            value={searchTerm}
+            onChange={(e) => handleSearch(e.target.value)}
+            className="border-0 flex-grow"
+          />
+        </div>
+        
+        <Sheet onOpenChange={clearForm}>
+          <SheetTrigger asChild>
+            <Button
+              onClick={createAccount}
+              className="flex items-center gap-2 my-4 bg-primary text-white hover:bg-primary-dark transition-all"
+            >
+              <Plus /> Buat Akun Baru
+            </Button>
+          </SheetTrigger>
+          <SheetContent className="space-y-4 p-6">
+            <SheetHeader>
+              <SheetTitle className="text-lg font-bold">Buat Akun Baru</SheetTitle>
+            </SheetHeader>
+            
+            {/* Input Form */}
+            <div className="space-y-2">
+              <label>Nama</label>
+              <Input
+                value={nama}
+                onChange={(e) => setNama(e.target.value)}
+                maxLength={50}
+                className="border rounded-md"
+              />
+              <p className="text-xs text-muted-foreground">{nama.length} / 50</p>
+            </div>
+            
+            <div className="space-y-2">
+              <label>Email</label>
+              <Input
+                value={email}
+                type="email"
+                onChange={(e) => setEmail(e.target.value)}
+                className="border rounded-md"
+              />
+              <p className={`text-xs ${!isValidEmail(email) ? 'text-red-500' : 'text-muted-foreground'}`}>
+                {isValidEmail(email) ? "Valid email" : "Invalid email"}
+              </p>
+            </div>
+            
+            <div className="space-y-2">
+              <label>Password</label>
+              <Input
+                value={password}
+                type="password"
+                onChange={(e) => setPassword(e.target.value)}
+                maxLength={20}
+                className="border rounded-md"
+              />
+              <p className={`text-xs ${password.length < 8 ? 'text-red-500' : 'text-muted-foreground'}`}>
+                {password.length} / 20
+              </p>
+            </div>
+  
+            <div className="space-y-2">
+              <label>Role</label>
+              <Select value={role} onValueChange={setRole}>
+                <SelectTrigger className="border rounded-md">
+                  <SelectValue placeholder="Pilih Role" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="user">User</SelectItem>
+                  <SelectItem value="admin">Admin</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            
+            <Button
+              className="w-full bg-primary text-white hover:bg-primary-dark transition-all"
+              onClick={RegisterAccount}
+              disabled={nama.length < 1 || !isValidEmail(email) || password.length < 8}
+            >
+              Register
+            </Button>
+          </SheetContent>
+        </Sheet>
+  
+        <Table className="mt-4">
+          <TableHeader>
+            <TableRow>
+              <TableHead>Nama</TableHead>
+              <TableHead>Email</TableHead>
+              <TableHead>Dibuat</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {filteredData.map((u: User, i: number) => (
+              <Sheet key={i}>
+                <SheetTrigger asChild>
+                  <TableRow
+                    onClick={() => selectAccount(i)}
+                    className={`cursor-pointer hover:bg-muted transition-all ${i === index && clicked && 'bg-muted-light'}`}
+                  >
+                    <TableCell>{u.fullName} <Badge className="ml-2">{u.role}</Badge></TableCell>
+                    <TableCell>{u.email}</TableCell>
+                    <TableCell>{dayjs(u.created_at).format("DD MMMM YYYY")}</TableCell>
+                  </TableRow>
+                </SheetTrigger>
+                <SheetContent className="space-y-4 p-6">
+                  <SheetHeader>
+                    <SheetTitle className="text-lg font-bold">Edit Akun</SheetTitle>
+                  </SheetHeader>
+                  
+                  <div className="space-y-2">
+                    <label>Nama</label>
+                    <Input
+                      value={nama}
+                      onChange={(e) => setNama(e.target.value)}
+                      maxLength={20}
+                      className="border rounded-md"
+                    />
+                    <p className={`text-xs ${nama.length < 1 ? 'text-red-500' : 'text-muted-foreground'}`}>
+                      {nama.length} / 20
+                    </p>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <label>Role</label>
+                    <Select value={role} onValueChange={setRole}>
+                      <SelectTrigger className="border rounded-md">
+                        <SelectValue placeholder="Pilih Role" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="user">User</SelectItem>
+                        <SelectItem value="admin">Admin</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+  
+                  <Button
+                    className="w-full bg-primary text-white hover:bg-primary-dark transition-all"
+                    onClick={UpdateAccount}
+                    disabled={nama.length < 1}
+                  >
+                    Simpan
+                  </Button>
+                </SheetContent>
+              </Sheet>
+            ))}
+          </TableBody>
+        </Table>
+      </CardContent>
+    </Card>
+  </div>  
   );
 }

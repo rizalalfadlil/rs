@@ -119,40 +119,43 @@ export default function Page() {
           </div>
         </>
       ) : (
-        <div className="w-full min-h-dvh flex items-center justify-center bg-gradient-to-r from-green-500 to-white">
-        <div className="w-full max-w-md bg-white rounded-lg shadow-lg overflow-hidden">
-          <div className="p-8 border-b-2 border-gray-100 flex flex-col items-center">
-            <img src="logo.png" alt="Admin Login" className="w-16 h-16 mb-2" />
-            <p className="text-gray-600 mt-2 text-center">Admin Login</p>
+        <div className="w-full min-h-screen flex items-center justify-center bg-gradient-to-r from-green-400 via-blue-400 to-purple-500">
+        <div className="w-full max-w-lg bg-white rounded-2xl shadow-2xl overflow-hidden transform transition duration-500 hover:scale-105">
+          <div className="p-10 border-b-2 border-gray-100 flex flex-col items-center">
+            <img src="logo.png" alt="Admin Login" className="w-20 h-20 mb-6 rounded-full shadow-lg" />
+            <p className="text-gray-700 text-2xl font-semibold">Admin Login</p>
           </div>
-          <div className="p-8 space-y-8">
-  <div>
-    <label className="block text-sm font-medium text-gray-700">Email</label>
-    <Input
-      value={email}
-      onChange={(e) => setEmail(e.target.value)}
-      className="w-full mt-2 p-3 border rounded-lg shadow-sm transition duration-200 ease-in-out hover:shadow-md focus:shadow-lg focus:border-green-500 focus:ring focus:ring-green-300 focus:ring-opacity-50"
-    />
-  </div>
-  <div>
-    <label className="block text-sm font-medium text-gray-700">Password</label>
-    <Input
-      type="password"
-      value={password}
-      onChange={(e) => setPassword(e.target.value)}
-      className="w-full mt-2 p-3 border rounded-lg shadow-sm transition duration-200 ease-in-out hover:shadow-md focus:shadow-lg focus:border-green-500 focus:ring focus:ring-green-300 focus:ring-opacity-50"
-    />
-  </div>
-  <Button
-    className="w-full py-3 bg-gradient-to-r from-green-500 to-blue-600 text-white font-semibold rounded-lg shadow-md hover:from-green-600 hover:to-blue-700 focus:outline-none focus:ring-4 focus:ring-green-500 focus:ring-opacity-50 transition duration-300 transform hover:-translate-y-1 hover:shadow-lg"
-    onClick={LoginAction}
-  >
-    Log in
-  </Button>
-</div>
-
+          <div className="p-10 space-y-10">
+            <div>
+              <label className="block text-lg font-medium text-gray-700">Email</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full mt-2 p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-300 transition duration-200"
+              />
+            </div>
+            <div>
+              <label className="block text-lg font-medium text-gray-700">Password</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full mt-2 p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-300 transition duration-200"
+              />
+            </div>
+            <button
+              className="w-full py-4 bg-gradient-to-r from-green-500 to-blue-600 text-white text-lg font-bold rounded-xl shadow-lg hover:bg-gradient-to-r hover:from-green-600 hover:to-blue-700 focus:outline-none focus:ring-4 focus:ring-green-500 focus:ring-opacity-50 transition duration-300 transform hover:-translate-y-1"
+              onClick={LoginAction}
+            >
+              Log in
+            </button>
+            <p className="text-center text-base text-gray-500 mt-6">
+              Belum punya akun? <a href="#" className="text-blue-500 hover:underline">Daftar sekarang</a>
+            </p>
+          </div>
         </div>
-      </div>     
+      </div>             
       )}
       <ConsoleToaster />
     </div>

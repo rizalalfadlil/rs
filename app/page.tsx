@@ -112,18 +112,23 @@ const sections = [
     ]}
   />,
   <Tentang
-    judul={["ParamedikaHomecare.com, Solusinya!", "judul 2"]}
+    judul={["Jika Anda Pernah Mengalami Hal Ini", "ParamedikaHomecare.com, Solusinya!"]}
     deskripsi={["", ""]}
-    gambar={["./wanita.png", "./wanita.png"]}
+    gambar={["./images.jpg", "./images2.jpg"]}
     konten={[
       [
-        "Layanan medical homecare yang aman nyaman dan terpercaya.",
+        "Sakit tapi tidak punya waktu untuk berobat ke rumah sakit atau Klinik",
+        "Sedang sakit dan ingin segera berkonsultasi dengan dokter.",
+        "Merasa tidak nyaman untuk dirawat di Rumah Sakit.",
+        "Sudah minum obat namun tidak kunjung sembuh.",
+        "Kesulitan untuk pergi ke Rumah Sakit.",
+      ],
+      ["Layanan medical homecare yang aman nyaman dan terpercaya.", 
         "Fasilitas lengkap sesuai dengan kebutuhan anda.",
         "Tenaga kesehatan professional dan bersertifikat.",
         "Pelayanan kesehatan langsung di rumah anda.",
-        "Konsultasi gratis dan Cepat dan sigap.",
+        "Konsultasi gratis dan Cepat dan sigap."
       ],
-      ["konten 2", "konten 2"],
     ]}
   />,
   <Pencapaian

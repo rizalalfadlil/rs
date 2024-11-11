@@ -38,19 +38,26 @@ export function Sidebar({ page, setPage }: any) {
     );
   };
   return (
-    <aside className="border flex flex-col xl:min-w-80">
-      <div>
-        <p className="text-2xl p-4 font-bold">App title</p>
+    <aside className="w-80 min-h-screen text-white flex flex-col shadow-lg" style={{ background: '#3749A6' }}>
+    <div className="flex items-center p-6 space-x-4">
+      <div className="bg-white p-2 rounded-lg shadow-lg">
+        <img src="logo.png" alt="Logo" className="w-10 h-10" />
       </div>
-      <div className="grow space-y-2 text-sm p-2">
-        {menuList.map((m, i) => (
-          <MenuItem
-            target={m.target}
-            icon={m.icon}
-            text={m.text}
-          />
-        ))}
-      </div>
-    </aside>
+      <p className="text-3xl font-bold bg-gradient-to-r from-blue-500 via-green-500 to-pink-500 text-transparent bg-clip-text">
+  Paramedika
+</p>
+    </div>
+    <div className="grow space-y-3 text-lg p-4">
+      {menuList.map((m, i) => (
+        <MenuItem
+          key={i}
+          target={m.target}
+          icon={m.icon}
+          text={m.text}
+          className="hover:bg-blue-700 transition duration-300 ease-in-out p-3 rounded-lg"
+        />
+      ))}
+    </div>
+  </aside>  
   );
 }
