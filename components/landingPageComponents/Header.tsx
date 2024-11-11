@@ -8,7 +8,7 @@ import {
 } from "../ui/dropdown-menu";
 
 export function Header({ sections, logo }: any) {
-  const navs = sections.map((s, i) => {
+  const navs = sections.map((s:any, i:number) => {
     const name = s.type.DisplayName || s.type.name;
     return (
       <a
@@ -20,7 +20,7 @@ export function Header({ sections, logo }: any) {
       </a>
     );
   });
-  const dropNavs = sections.map((s, i) => {
+  const dropNavs = sections.map((s:any, i:number) => {
     const name = s.type.DisplayName || s.type.name;
     return (
       <DropdownMenuItem
