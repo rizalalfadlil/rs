@@ -4,7 +4,7 @@
 import { Header } from "@/components/landingPageComponents/Header";
 import { FloatingButton } from "../components/FloatingButton";
 import { info, sections } from "./landingpagedata";
-import { Footer } from "@/components/Footer";
+import { Footer } from "@/components/landingPageComponents/Footer";
 
 
 export default function LandingPage() {

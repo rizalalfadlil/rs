@@ -4,7 +4,7 @@ import { Button } from "../ui/button";
 
 export function Footer({}) {
     return (
-      <footer className="bg-primary responsive-padding py-8 text-background">
+      <footer className="bg-primary responsive-padding py-8 text-background" id="footer">
         <div className="grid md:grid-cols-3 gap-4">
           <div className="space-y-4">
             <b>Kontak Kami</b>
