@@ -65,7 +65,7 @@ export default function Layanan({
               </div>
               <DialogFooter>
                 <DialogClose asChild>
-                  <Button>Tutup</Button>
+                  <Button className="rounded-full">Tutup</Button>
                 </DialogClose>
               </DialogFooter>
             </DialogContent>
