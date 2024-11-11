@@ -12,6 +12,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { User } from "lucide-react";
 export function Ulasan({
   judul = "ulasan",
   deskripsi,
@@ -34,7 +35,7 @@ export function Ulasan({
     <section className="responsive-padding min-h-dvh grid content-center space-y-8">
     <div className="space-y-2">
       <p className="text-3xl text-center font-bold text-primary">{judul}</p>
-      <p className="text-lg font-bold text-muted-foreground">
+      <p className="md:text-lg font-bold text-muted-foreground text-center">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
         dignissimos cumque ad aut laborum optio nihil animi magni ipsam? Hic
         esse non dolor, minima nemo reiciendis quibusdam ab aspernatur
@@ -49,7 +50,7 @@ export function Ulasan({
     >
       <Carousel
         plugins={[plugin.current]}
-        className="max-w-lg md:max-w-xl xl:max-w-3xl"
+        className="max-w-60 md:max-w-md"
         onMouseEnter={plugin.current.stop}
         onMouseLeave={plugin.current.reset}
       >
@@ -68,7 +69,7 @@ export function Ulasan({
               <CarouselItem key={index}>
                 <div className="p-4 z-0">
                   <Card className="bg-primary text-background shadow-lg rounded-lg">
-                    <CardContent className="p-6 flex flex-col md:flex-row gap-6 md:gap-8 lg:gap-12 items-center w-[90vw] md:w-[60vw] xl:w-[40vw] max-w-lg">
+                    <CardContent className="p-6 flex flex-col md:flex-row gap-6 md:gap-8 lg:gap-12 items-center w-full">
                       <p className="italic text-center text-base md:text-lg max-w-sm lg:max-w-md">
                         "{r.ulasan}"
                       </p>
@@ -78,7 +79,7 @@ export function Ulasan({
                           {r.foto ? (
                             <img src={r.foto} alt={`${r.nama} photo`} className="w-full h-full object-cover" />
                           ) : (
-                            <i className="fas fa-user-circle text-5xl text-muted-foreground"></i>
+                            <User className=" text-foreground/30 w-full h-full p-2"/>
                           )}
                         </div>
                         <div className="text-center md:text-right">

@@ -2,7 +2,7 @@ import { Check } from "lucide-react";
 import { motion } from "framer-motion";
 export function Tentang({ judul, deskripsi, gambar, konten }: any) {
   return (
-    <section className="min-h-dvh responsive-padding grid md:grid-cols-2">
+    <section className="min-h-dvh responsive-padding grid gap-4 md:grid-cols-2">
       <div className="grid place-content-center">
         <motion.div
           initial={{ opacity: 0, translateY: 100 }}
@@ -18,25 +18,22 @@ export function Tentang({ judul, deskripsi, gambar, konten }: any) {
         initial={{ opacity: 0, translateY: 100 }}
         transition={{ duration: 0.6, ease: "easeInOut" }}
         whileInView={{ opacity: 100, translateY: 0 }}
-        className="grid content-center gap-4"
+        className="grid content-center gap-4 mb-8 md:mb-0"
       >
-        <p className="text-4xl font-bold">{judul[0]}</p>
-        <p className="text-lg font-bold text-muted-foreground">
-          {deskripsi[0]}
-        </p>
+        <p className=" text-lg md:text-3xl font-bold">{judul[0]}</p>
+        <p className=" font-bold text-muted-foreground">{deskripsi[0]}</p>
         <ul className="font-bold space-y-2 text-blue-700">
-  {konten[0].map((k: string, i: number) => (
-    <li key={i} className="flex items-center gap-4">
-      <button className="flex items-center gap-2 p-2 bg-blue-300 rounded-lg hover:bg-green-200 transition duration-200">
-        <div className="p-1.5 bg-primary text-background rounded-full">
-          <Check />
-        </div>
-        <span>{k}</span>
-      </button>
-    </li>
-  ))}
-</ul>
-
+          {konten[0].map((k: string, i: number) => (
+            <li key={i} className="flex items-center gap-4">
+              <button className="flex items-center gap-2 p-2 bg-blue-300 rounded-lg hover:bg-green-200 transition duration-200">
+                <div className="p-1.5 bg-primary text-background rounded-full">
+                  <Check />
+                </div>
+                <span>{k}</span>
+              </button>
+            </li>
+          ))}
+        </ul>
       </motion.div>
       <motion.div
         initial={{ opacity: 0, translateY: 100 }}
@@ -44,22 +41,22 @@ export function Tentang({ judul, deskripsi, gambar, konten }: any) {
         whileInView={{ opacity: 100, translateY: 0 }}
         className="grid content-center gap-4"
       >
-        <p className="text-4xl font-bold">{judul[1]}</p>
+        <p className="text-lg md:text-3xl font-bold">{judul[1]}</p>
         <p className="text-lg font-bold text-muted-foreground">
           {deskripsi[1]}
         </p>
-        <ul className="font-bold space-y-1 text-orange-500"> 
-  {konten[0].map((k: string, i: number) => (
-    <li key={i} className="flex items-center gap-2"> 
-      <button className="flex items-center gap-2 p-2 bg-orange-100 rounded-lg hover:bg-green-200 transition duration-200">
-        <div className="p-1.5 bg-primary text-background rounded-full">
-          <Check />
-        </div>
-        <span>{k}</span>
-      </button>
-    </li>
-  ))}
-</ul>
+        <ul className="font-bold space-y-1 text-orange-500">
+          {konten[0].map((k: string, i: number) => (
+            <li key={i} className="flex items-center gap-2">
+              <button className="flex items-center gap-2 p-2 bg-orange-100 rounded-lg hover:bg-green-200 transition duration-200">
+                <div className="p-1.5 bg-primary text-background rounded-full">
+                  <Check />
+                </div>
+                <span>{k}</span>
+              </button>
+            </li>
+          ))}
+        </ul>
       </motion.div>
       <div className="grid place-content-center">
         <motion.div

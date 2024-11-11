@@ -72,42 +72,52 @@ const sections = [
       {
         gambar: "./layanan2.png",
         judul: "Consultation",
-        isi: `Free consultation with our trusted doctors and get the best recomendations`,
+        isi: `
+  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Praesentium eos esse dolorum earum natus, officia aliquid culpa. Cupiditate magni, totam quibusdam debitis, consectetur aliquam dolorem nam perferendis, officia quidem commodi.`,
+        deskripsi: "Free consultation with our trusted doctors and get the best recomendations"
       },
       {
         gambar: "./HOME.png",
         judul: "Homecare",
-        isi: `Buy  your medicines with our mobile application with a simple delivery system`,
+        isi: `
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Praesentium eos esse dolorum earum natus, officia aliquid culpa. Cupiditate magni, totam quibusdam debitis, consectetur aliquam dolorem nam perferendis, officia quidem commodi.`,
+        deskripsi: "Buy  your medicines with our mobile application with a simple delivery system"
       },
       {
         gambar: "./image9.png",
         judul: "Midwife Services",
-        isi: `Choose your doctor from thousands of specialist, general, and trusted hospitals`,
+        isi: ``,
+        deskripsi: "Choose your doctor from thousands of specialist, general, and trusted hospitals"
       },
       {
         gambar: "./image10.png",
         judul: "Caregiver",
-        isi: `Free consultation with our trusted doctors and get the best recomendations`,
+        isi: ``,
+        deskripsi: "Free consultation with our trusted doctors and get the best recomendations"
       },
       {
         gambar: "./image11.png",
         judul: "Homecare",
-        isi: `Track and save your medical history and health data `,
+        isi: ` `,
+        deskripsi: "Track and save your medical history and health data"
       },
       {
         gambar: "",
         judul: "Homecare",
         isi: `Buy  your medicines with our mobile application with a simple delivery system`,
+        deskripsi: ""
       },
       {
         gambar: "",
         judul: "Homecare",
         isi: `Buy  your medicines with our mobile application with a simple delivery system`,
+        deskripsi: ""
       },
       {
         gambar: "",
         judul: "Homecare",
         isi: `Buy  your medicines with our mobile application with a simple delivery system`,
+        deskripsi: ""
       },
     ]}
   />,

@@ -55,7 +55,7 @@ export const Home = ({
           </KontakDialog>
         </motion.div>
       </div>
-      <div className=" grid place-content-center">
+      <div className=" grid place-content-center py-20 md:pt-0">
         <motion.img
           initial={{ opacity: 0, translateY: 100 }}
           transition={{ duration: 0.9, ease: "easeInOut" }}
