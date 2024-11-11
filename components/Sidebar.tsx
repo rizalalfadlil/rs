@@ -1,4 +1,4 @@
-import { Flag, Home, Newspaper, Star, User } from "lucide-react";
+import { Home, Newspaper, Star, User } from "lucide-react";
 import React from "react";
 export function Sidebar({ page, setPage }: any) {
   const menuList = [

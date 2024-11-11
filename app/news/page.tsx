@@ -6,7 +6,6 @@ import {
   CardContent,
   CardFooter,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 import React, { useEffect, useState } from "react";
 import { Header } from "../../components/Header";
@@ -43,6 +42,7 @@ export default function News() {
               i: any
             ) => (
               <Card
+              key={i}
                 className="hover:bg-muted cursor-pointer transition-color duration-300"
                 onClick={() => (window.location.href = `/news/${n.id}`)}
               >

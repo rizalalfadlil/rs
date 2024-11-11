@@ -127,7 +127,7 @@ export function ReviewPage({}) {
     
     {/* Testimonials grid */}
     <div className="grid md:grid-cols-2 gap-4">
-      {filteredData.map((r, i) => (
+      {filteredData.map((r:any, i:number) => (
         <Sheet key={i}>
           <SheetTrigger asChild>
             <div
@@ -244,7 +244,7 @@ export function ReviewPage({}) {
             <label>Jabatan</label>
             <Input
               value={jabatan}
-              onChange={(e) => setJabatan(e.target.value)}
+              onChange={(e) => setjabatan(e.target.value)}
               className="border rounded-md p-2"
             />
           </div>

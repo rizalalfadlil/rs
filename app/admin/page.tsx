@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button";
 import { DoorOpen, Newspaper, Star, User } from "lucide-react";
 import NewsPage from "@/components/NewsPage";
 import ConsoleToaster from "@/components/ConsoleToaster";
-import { Input } from "@/components/ui/input";
 import { getUserData, login, logout } from "@/backend/controler/account";
 import { auth } from "@/backend/firebase"; // Impor auth dari Firebase
 import { onAuthStateChanged } from "firebase/auth"; // Impor untuk mendeteksi perubahan status autentikasi

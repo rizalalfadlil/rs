@@ -107,7 +107,7 @@ export default function NewsPage({
                         <AlertDialogHeader>
                           <AlertDialogTitle>Hapus berita</AlertDialogTitle>
                           <AlertDialogDescription>
-                            hapus berita "{newsData[selectedNews].judul}" ?
+                            hapus berita &quot;{newsData[selectedNews].judul}&quot; ?
                           </AlertDialogDescription>
                         </AlertDialogHeader>
                         <AlertDialogFooter>
@@ -168,9 +168,10 @@ export default function NewsPage({
                     judul: string;
                     penulis: string;
                   },
-                  i: React.SetStateAction<number>
+                  i: number
                 ) => (
                   <div
+                    key={i}
                     className="p-4 hover:bg-muted transition-all duration-300 rounded-md cursor-pointer"
                     onClick={() => setSelectedNews(i)}
                   >

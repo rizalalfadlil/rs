@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-key */
 "use client";
-import { ArrowUp, LayoutGrid, Menu, Phone, X } from "lucide-react";
+import { ArrowUp, LayoutGrid, Phone, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import KontakDialog from "./KontakDialog";
