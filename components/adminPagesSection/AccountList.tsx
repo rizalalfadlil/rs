@@ -11,15 +11,15 @@ import {
 } from "@/components/ui/table";
 import { Plus, Search } from "lucide-react";
 import React, { useEffect, useState } from "react";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "./ui/select";
+} from "../ui/select";
 import {
   Sheet,
   SheetContent,
@@ -27,7 +27,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "./ui/sheet";
+} from "../ui/sheet";
 import {
   getUsersList,
   register,
